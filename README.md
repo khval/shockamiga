@@ -16,6 +16,15 @@ Game data and patching:
 This source release does not contain any game data, the game data is still
 covered by the original EULA and must be obeyed as usual.
 
+Compiling on AmigaOS4
+---------------------
+
+The build system is missing, create some makefile’s
+
+There are many types not found while compiling, it might have something to do with build system on mac.
+
+It looks like this project might need libdgl
+
 
 Compiling on MacOS 9:
 ---------------------
