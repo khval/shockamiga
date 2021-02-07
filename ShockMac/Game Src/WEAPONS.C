@@ -26,6 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define __WEAPONS_SRC
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <string.h>
 
 #include "weapons.h"
@@ -212,7 +216,7 @@ ObjID do_effect_fix(ObjID owner, ubyte effect, ubyte start, Combat_Pt effect_poi
 
    loc.x = obj_coord_from_fix(effect_point.x);
    loc.y = obj_coord_from_fix(effect_point.y);
-   loc.z = obj_height_from_fix(effect_point.z);
+   loc.z = obj_height_from_fix((int)effect_point.z);
    return(do_special_effect_location(owner, effect, start, &loc, location));
 return OBJ_NULL;
 }
