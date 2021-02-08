@@ -1,7 +1,7 @@
 
 C=g++
 
-INC = -I./ -I./Headers/ 
+INC = -I./ -I./Headers/ -I../amigaos4_src
 
 DEFS = -DLZW_BUFF_SIZE=1024
 

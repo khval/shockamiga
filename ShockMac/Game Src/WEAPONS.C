@@ -984,7 +984,7 @@ bool fire_player_weapon(LGPoint *pos, LGRegion *r, bool pull)
       realpos.x = r->abs_x + RectWidth(r->r)/2;
       realpos.y = r->abs_y + RectHeight(r->r)/2;
 
-//ï¿½ï¿½ï¿½      ui_mouse_put_xy(realpos.x,realpos.y);
+//¥¥¥      ui_mouse_put_xy(realpos.x,realpos.y);
       // Heck we know this is the first time you're firing. 
       pull = TRUE;
    }
