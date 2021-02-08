@@ -779,7 +779,7 @@ bool player_fire_slow_projectile(int proj_triple, int fire_triple,fix proj_mass,
    loc.z = obj_height_from_fix(new_state.Z);
 
    // let's get the heading of the shot
-   head = obj_angle_from_fixang(fix_atan2(vector.y, vector.x)); 
+   head = obj_angle_from_fixang(fix_atan2((int)vector.y, (int)vector.x)); 
    loc.h = (ubyte) ((320L-head) % 256);
 
    // let's get the pitch
@@ -797,7 +797,7 @@ bool player_fire_slow_projectile(int proj_triple, int fire_triple,fix proj_mass,
       find_fire_vector(&new_pos, &origin);
       loc.x += (obj_coord_from_fix(origin.x)/2);
       loc.y += (obj_coord_from_fix(origin.y)/2);
-      loc.z += (obj_height_from_fix(origin.z)/2);
+      loc.z += (obj_height_from_fix((int)origin.z)/2);
    }
 
    // get state gets the velocity - this from shamu the pirate!
@@ -805,7 +805,7 @@ bool player_fire_slow_projectile(int proj_triple, int fire_triple,fix proj_mass,
                                                                                                     
    vector.x = (vector.x * proj_speed) + (obj_coord_from_fix(new_state.X_dot)*PHYSICS_RADIUS_UNIT)*2;
    vector.y = (vector.y * proj_speed) + (obj_coord_from_fix(new_state.Y_dot)*PHYSICS_RADIUS_UNIT)*2;
-   vector.z = (vector.z * proj_speed) + (obj_height_from_fix(new_state.Z_dot)*PHYSICS_RADIUS_UNIT)*2;
+   vector.z = (vector.z * proj_speed) + (obj_height_from_fix((int)new_state.Z_dot)*PHYSICS_RADIUS_UNIT)*2;
 
    obj_move_to_vel(proj_id, &loc, TRUE, vector.x, vector.y, vector.z);
    apply_gravity_to_one_object(proj_id, SLOW_PROJECTILE_GRAVITY);
