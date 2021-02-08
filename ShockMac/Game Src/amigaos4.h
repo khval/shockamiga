@@ -16,15 +16,20 @@ typedef unsigned int uint;
 typedef unsigned long ulong;
 typedef unsigned short ushort;
 typedef unsigned char ubyte;
-typedef char byte;
+typedef signed char byte;
 typedef int errtype;		// don't know if its correct.
 typedef double fix;		// looks like float or double, maybe correct
 typedef double fixang;	// looks like float or double, maybe correct
 
-#define Ref int *
+typedef int Ref;
 typedef int Id;
 
-typedef struct BitMap grs_bitmap;		// don't know if its correct.
+typedef struct 
+{
+	int w;
+	int h;
+	int bits;
+} grs_bitmap;		// don't know if its correct.
 
 typedef struct 
 {
@@ -88,22 +93,33 @@ typedef struct
 	double Z_dot;
 } State;		// most likely incorrect
 
-typedef int Pelvis;				// most likely incorrect
+typedef struct
+{
+	int cyber_space;
+} Pelvis;				// most likely incorrect
+
 typedef int TerrainData;			// most likely incorrect
 
 typedef struct
 {
 	int cyber_space;
+	int size;
 } Robot;				// most likely incorrect
+
 
 typedef int RndStream;
 typedef int grs_canvas;
 typedef void * Ptr;
 
-// not sure what dummy is, can't find any manual on or doc on fix_make
-// but this command is used to convert to fixed numbers.
+#warning ok
 
-#define fix_make(value,dummy) ((double) value)
+static fix fix_make(short value,short shift)		// this might be bullshit...
+{
+	// assuming value can max be 256, when all bit set it should be 1. (range 1.0000000 to 0.00390625.)
+
+	return ( (fix) value / 256.0f ) * (fix) (1L<<(int)shift);
+}
+
 
 #define RndRange(dummy,min,max) ((rand()%(max-min))+min)
 
@@ -112,7 +128,9 @@ typedef void * Ptr;
 #define fix_mul(a,b) ((a)*(b))
 #define fix_div(a,b) ((a)/(b))
 #define fix_atan2 atan2
-#define FIXANG_PI 3.14159265358979323846
+#define FIXANG_PI 3.14159265358979323846f
+
+#define fixrad_to_fixang(x) (x * 180.0f / FIXANG_PI)
 
 #define min(a,b) ((a)<(b)?(a):(b))
 #define max(a,b) ((a)>(b)?(a):(b))
@@ -141,6 +159,55 @@ static void uiSetCursor()
 	printf("%s:%d:%s()\n",__FILE__,__LINE__,__FUNCTION__);
 }
 
+static void ss_point_convert( short *x, short *y, bool opt)
+{
+	printf("%d:%d:%s(%lf,%lf,%s)\n",__FILE__,__LINE__,__FUNCTION__,x,y,opt?"True":"False");
+}
+
+static void gr_set_light_tab( uchar *bw_shading_table)
+{
+	printf("%s:%d:%s()\n",__FILE__,__LINE__,__FUNCTION__);
+}
+
+static void EDMS_get_pelvis_parameters( uint getParam,void *param)
+{
+	printf("%d:%d:%s(%d,%08x)\n",__FILE__,__LINE__,__FUNCTION__,getParam, param);
+}
+
+static void EDMS_set_pelvis_parameters( uint getParam,void *param)
+{
+	printf("%d:%d:%s(%d,%08x)\n",__FILE__,__LINE__,__FUNCTION__,getParam, param);
+}
+
+static void uiHideMouse(LGRect *r)
+{
+	printf("%d:%d:%s()\n",__FILE__,__LINE__,__FUNCTION__);
+}
+
+static void uiShowMouse(LGRect *r)
+{
+	printf("%d:%d:%s()\n",__FILE__,__LINE__,__FUNCTION__);
+}
+
+static void RefUnlock(Ref ref)
+{
+	printf("%d:%d:%s()\n",__FILE__,__LINE__,__FUNCTION__);
+}
+
+static void DisposePtr(Ptr ptr)
+{
+	printf("%d:%d:%s()\n",__FILE__,__LINE__,__FUNCTION__);
+}
+
 #define OK true
 
 #define FIX_UNIT true
+#define SND_DEF_PAN 1
+
+enum
+{
+	ERR_NOEFFECT,
+	ERR_RANGE,
+	ERR_FOPEN
+} OSErr;
+
