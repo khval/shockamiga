@@ -936,7 +936,7 @@ SFX_GUN_PLASMA        ,
 };
 
 ObjID damage_sound_id;
-char damage_sound_fx = -1;
+signed char damage_sound_fx = -1;
 
 #define CYBER_FIRE_WAIT 60
 #define MIN_AUTO_SHOT 3
@@ -984,7 +984,7 @@ bool fire_player_weapon(LGPoint *pos, LGRegion *r, bool pull)
       realpos.x = r->abs_x + RectWidth(r->r)/2;
       realpos.y = r->abs_y + RectHeight(r->r)/2;
 
-//¥¥¥      ui_mouse_put_xy(realpos.x,realpos.y);
+//ï¿½ï¿½ï¿½      ui_mouse_put_xy(realpos.x,realpos.y);
       // Heck we know this is the first time you're firing. 
       pull = TRUE;
    }
