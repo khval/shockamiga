@@ -27,6 +27,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <limits.h>
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include "wrapper.h"
 #include "tools.h"
 #include "invent.h"
