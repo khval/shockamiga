@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // pain, stupidity, yes
 #ifdef __RENDTOOL_SRC
-char model_vtext_data[] = {
+signed char model_vtext_data[] = {
 29, -1,
 21, 15, 16, -1,
 37, 15, 21, -1,
@@ -75,5 +75,5 @@ char model_vtext_data[] = {
 -1, 
 };
 #else
-extern char model_vtext_data[];
+extern signed char model_vtext_data[];
 #endif
