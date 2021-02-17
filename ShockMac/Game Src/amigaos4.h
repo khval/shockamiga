@@ -3,48 +3,62 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stdint.h>
 
 #include <proto/exec.h>
 #include <proto/dos.h>
+#include <proto/intuition.h>
 
 // -----------------------------------------------------------------------------------------------------
 // Trying to define stuff maybe std to MacOS, but AmigaOS does not have....
 // ------------------------------------------------------------------------------------------------------
 
-typedef unsigned char uchar;
+
 typedef unsigned int uint;
-typedef unsigned long ulong;
 typedef unsigned short ushort;
-typedef unsigned char ubyte;
-typedef signed char byte;
 typedef int errtype;		// don't know if its correct.
-typedef double fix;		// looks like float or double, maybe correct
-typedef double fixang;	// looks like float or double, maybe correct
 
-typedef int Ref;
-typedef int Id;
+
+typedef struct Window * WindowPtr;
+typedef uint32_t MenuHandle;		//  I'm thinking emulate this in a array
+typedef uint32_t RgnHandle;		//  I'm thinking emulate this in a array
+typedef uint32_t Handle;			//  I'm thinking emulate this in a array
+typedef uint32_t CursHandle;		//  I'm thinking emulate this in a array
+
+typedef struct
+{
+	void *thePort;
+} QDGlobals;
+
+extern void uiFlush();
+
+typedef int TimerUPP;
+
+
+// gr short for graphics, i guess.
+
+// draw bitmap
+
+
+
+struct xy 	// not sure about the name... 
+{
+	int x;
+	int y;
+};
 
 typedef struct 
 {
-	int w;
-	int h;
-	int bits;
-} grs_bitmap;		// don't know if its correct.
+	struct xy  ul;
+	struct xy  lr;
+} LGRect;	
 
-typedef struct 
+typedef struct
 {
-	struct 
-	{
-		int x, y;
-	} ul;
+	int xxxx;
+} Rect;
 
-	struct 
-	{
-		int x, y;
-	} lr;
-
-} LGRect;		// don't know if its correct.
-
+extern struct xy MakePoint(int x, int y);
 
 static unsigned int RectWidth(LGRect *r)
 {
@@ -74,77 +88,52 @@ typedef bool Boolean;
 typedef FILE FSSpec;
 
 typedef int snd_digi_parms;		// most likely incorrect
-typedef int uiEvent;				// most likely incorrect
-typedef int RefTable;				// most likely incorrect
+typedef struct
+{
+	uint32_t subtype;
+} uiEvent;				// most likely incorrect
+
 typedef int LGCursor;			// most likely incorrect
 
-typedef int physics_handle;
+//typedef int physics_handle;
 
 typedef void * PQueue;			// most likely incorrect
 typedef unsigned int uiSlab;		// most likely incorrect
 
-typedef struct
-{
-	double X;
-	double Y;
-	double Z;
-	double X_dot;
-	double Y_dot;
-	double Z_dot;
-} State;		// most likely incorrect
+typedef struct Process TMTask;		// guess, we need a Amiga process here.
 
-typedef struct
-{
-	int cyber_space;
-} Pelvis;				// most likely incorrect
-
-typedef int TerrainData;			// most likely incorrect
-
-typedef struct
-{
-	int cyber_space;
-	int size;
-} Robot;				// most likely incorrect
-
+//typedef uint32_t ColorSpec;
+//typedef char *BitMap;
 
 typedef int RndStream;
-typedef int grs_canvas;
+
 typedef void * Ptr;
 
-#warning ok
+typedef char *GrafPtr;
+typedef void *GrafPort;
+typedef void *CGrafPort;
+typedef void *CGrafPtr;
 
-static fix fix_make(short value,short shift)		// this might be bullshit...
-{
-	// assuming value can max be 256, when all bit set it should be 1. (range 1.0000000 to 0.00390625.)
+typedef int PixMapHandle;
+typedef int CTabHandle;
 
-	return ( (fix) value / 256.0f ) * (fix) (1L<<(int)shift);
-}
+typedef uint32_t OSErr;
+typedef uint32_t ResType;
 
 
 #define RndRange(dummy,min,max) ((rand()%(max-min))+min)
 
-#define EDMS_get_state
 
-#define fix_mul(a,b) ((a)*(b))
-#define fix_div(a,b) ((a)/(b))
-#define fix_atan2 atan2
-#define FIXANG_PI 3.14159265358979323846f
-
-#define fixrad_to_fixang(x) (x * 180.0f / FIXANG_PI)
-
-#define min(a,b) ((a)<(b)?(a):(b))
-#define max(a,b) ((a)>(b)?(a):(b))
-
-static bool RECT_TEST_PT(LGRect *r, LGPoint &p)
+static bool RECT_TEST_PT(LGRect *r, LGPoint *p)
 {
-	if ( p.x < r -> ul.x) return false;
-	if ( p.x > r -> lr.x) return false;
-	if ( p.y < r -> ul.y) return false;
-	if ( p.y > r -> lr.y) return false;
+	if ( p->x < r->ul.x ) return false;
+	if ( p->x > r->lr.x ) return false;
+	if ( p->y < r->ul.y ) return false;
+	if ( p->y > r->lr.y ) return false;
 	return true;
 }
 
-static void uiPopSlabCursor(void *)
+static void uiPopSlabCursor(void *param)
 {
 	printf("%s:%d:%s(...)\n",__FILE__,__LINE__,__FUNCTION__);
 }
@@ -152,6 +141,11 @@ static void uiPopSlabCursor(void *)
 static void mouse_put_xy( int x, int y)
 {
 	printf("%s:%d:%s(%d,%d)\n",__FILE__,__LINE__,__FUNCTION__,x,y);
+}
+
+static void DisposePtr( void *ptr )
+{
+	printf("%s:%d:%s(%08x)\n",__FILE__,__LINE__,__FUNCTION__,ptr);
 }
 
 static void uiSetCursor()
@@ -164,50 +158,107 @@ static void ss_point_convert( short *x, short *y, bool opt)
 	printf("%d:%d:%s(%lf,%lf,%s)\n",__FILE__,__LINE__,__FUNCTION__,x,y,opt?"True":"False");
 }
 
-static void gr_set_light_tab( uchar *bw_shading_table)
-{
-	printf("%s:%d:%s()\n",__FILE__,__LINE__,__FUNCTION__);
-}
-
-static void EDMS_get_pelvis_parameters( uint getParam,void *param)
-{
-	printf("%d:%d:%s(%d,%08x)\n",__FILE__,__LINE__,__FUNCTION__,getParam, param);
-}
-
-static void EDMS_set_pelvis_parameters( uint getParam,void *param)
-{
-	printf("%d:%d:%s(%d,%08x)\n",__FILE__,__LINE__,__FUNCTION__,getParam, param);
-}
-
-static void uiHideMouse(LGRect *r)
-{
-	printf("%d:%d:%s()\n",__FILE__,__LINE__,__FUNCTION__);
-}
-
-static void uiShowMouse(LGRect *r)
-{
-	printf("%d:%d:%s()\n",__FILE__,__LINE__,__FUNCTION__);
-}
-
-static void RefUnlock(Ref ref)
-{
-	printf("%d:%d:%s()\n",__FILE__,__LINE__,__FUNCTION__);
-}
-
-static void DisposePtr(Ptr ptr)
-{
-	printf("%d:%d:%s()\n",__FILE__,__LINE__,__FUNCTION__);
-}
-
 #define OK true
 
-#define FIX_UNIT true
 #define SND_DEF_PAN 1
 
 enum
 {
-	ERR_NOEFFECT,
+	nil
+};
+
+enum
+{
+	ERR_NOEFFECT = 1,
 	ERR_RANGE,
-	ERR_FOPEN
-} OSErr;
+	ERR_FOPEN 
+};
+
+enum
+{
+	MOUSE_LDOWN = 1,
+	UI_MOUSE_LDOUBLE = 2,
+	UI_EVENT_MOUSE = 4,
+	UI_EVENT_MOUSE_MOVE = 8
+};
+
+enum
+{
+	CURSOR_DRAW = 1
+};
+
+// the next 2 defines are used inside structs.
+
+#define UIEVFRONT	
+#define UIEVBACK(size)
+
+extern void region_abs_rect( LGRegion *, LGRect *, LGRect *);
+
+typedef int grs_font;
+
+extern uint32_t MouseLock;
+extern void *CurrentCursor;
+
+extern LGPoint LastCursorPos;
+
+
+
+#define ok
+
+typedef struct
+{
+	void *dummy;
+} g3s_phandle;
+
+typedef struct
+{
+	void *dummy;
+} g3s_vector;
+
+
+
+typedef struct
+{
+	void (*func) (int,int,int,int);
+} _tmp_LastCursor ;
+
+extern _tmp_LastCursor *LastCursor;
+
+#include "files.h"
+
+typedef struct 
+{
+	int w;
+	int h;
+	uchar *bits;
+} grs_bitmap;		// don't know if its correct.
+
+typedef struct
+{
+	grs_bitmap bm;
+	int _offscreen_mfd;
+	int _fullscreen_mfd;
+	int inv_view360_canvas;
+} grs_canvas;
+
+extern grs_canvas *CursorCanvas;
+
+void g3_set_vtext(char , grs_bitmap *);
+
+extern void gr_get_pal( short colorFrom, short colorTo, uchar *loadPalette);
+extern void gr_set_pal( short colorFrom, short colorTo, uchar *savePalette);
+extern void gr_bitmap(grs_bitmap *bmp, int x, int y);
+extern void gr_set_light_tab( uchar *bw_shading_table);
+extern void uiHideMouse(LGRect *r);
+extern void uiShowMouse(LGRect *r);
+extern grs_canvas*grd_screen_canvas;
+extern void gr_push_canvas( grs_canvas* );
+extern void gr_safe_set_cliprect( int x0,int y0,int x1,int y1 );
+extern void gr_set_font(grs_font *font);
+extern void gr_string_size( const char *txt ,short *x,short *y);
+extern int gr_string_width(const char *txt);
+extern void gr_set_fcolor(uint32_t color);
+extern void gr_rect(int,int,int,int);
+extern void gr_box(int,int,int,int);
+extern void gr_pop_canvas(void);
 
