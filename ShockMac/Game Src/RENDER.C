@@ -23,6 +23,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * $Date: 1994/10/27 04:55:24 $
  */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <string.h>
 
 #define __RENDER_SRC

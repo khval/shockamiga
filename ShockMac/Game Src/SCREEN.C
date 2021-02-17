@@ -27,6 +27,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define __SCREEN_SRC
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include "criterr.h"
 #include "screen.h"
 #include "tools.h"

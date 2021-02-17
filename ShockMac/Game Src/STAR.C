@@ -43,6 +43,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdlib.h>
 #include "star.h"
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 //#define  STAR_SPEW
 #define STARS_ANTI_ALIAS
 

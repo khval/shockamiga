@@ -31,6 +31,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // and second, the upper right hand healthy/suit-energy measuring
 // bar graphs
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <math.h>
  
 #include "player.h"
