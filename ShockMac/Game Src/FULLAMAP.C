@@ -24,6 +24,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
+
 #include "tools.h"
 #include "screen.h"
 #include "input.h"
@@ -78,7 +83,7 @@ errtype amap_init(void)
 	int 		id;
 	LGRect	mac_rect = {{0,0},{640,480}};
 
-   generic_reg_init(TRUE,&amap_root_region,&mac_rect,&amap_slab,amap_key_handler,amap_mouse_handler);
+   generic_reg_init(TRUE,&amap_root_region,&mac_rect,&amap_slab, (void *) amap_key_handler, (void *) amap_mouse_handler);
    uiInstallRegionHandler(&amap_root_region,UI_EVENT_KBD_POLL|UI_EVENT_MOUSE_MOVE, amap_scroll_handler, NULL, &id);
    return(OK);
 }

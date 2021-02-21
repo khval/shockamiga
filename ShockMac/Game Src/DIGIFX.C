@@ -23,6 +23,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * $Date: 1994/11/28 08:38:42 $
  */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include "criterr.h"
 #include "objects.h"
 #include "player.h"

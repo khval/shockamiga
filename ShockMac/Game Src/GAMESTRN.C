@@ -24,6 +24,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
+
 #include <string.h>
 
 #include "Shock.h"
@@ -60,7 +65,7 @@ void init_strings(void)
 	FSSpec	fSpec;
 
 	// Open the string resource file, Mac style.
-	FSMakeFSSpec(gDataVref, gDataDirID, "\pcybstrng.rsrc", &fSpec);
+	FSMakeFSSpec(gDataVref, gDataDirID, "\\pcybstrng.rsrc", &fSpec);
 	string_res_file = ResOpenFile(&fSpec);
 	
 	if (string_res_file < 0)

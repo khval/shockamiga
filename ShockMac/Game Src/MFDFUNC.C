@@ -25,9 +25,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define __MFDFUNC_SRC
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 // Source code for all MFD Expose/Handler function pairs
 // This file is for callbacks only, actual infrastructure belongs
 // in newmfd.c
+
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
 
 #include <string.h>
 

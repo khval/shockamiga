@@ -120,7 +120,7 @@ char request_pathfind(LGPoint source, LGPoint dest, uchar dest_z, uchar start_z,
 // Unlike next_step_on_path, this procedure does not affect the paths array at all,
 // although it does modify it's pt parameter.
 // Returns direction of that next step
-char compute_next_step(char path_id, LGPoint *pt, char step_num)
+char compute_next_step(char path_id, LGPoint *pt, signed char step_num)
 {
    char movecode = -22;
    if (step_num == -1)
@@ -171,7 +171,7 @@ char next_step_on_path(char path_id, LGPoint *next, char *steps_left)
 // Checks whether or not we have skipped ahead to some square within LOOKAHEAD_STEPS
 // of the "current" location for the specified path.  If so, jumps the path to that point and 
 // returns TRUE.
-bool check_path_cutting(LGPoint new_sq, char path_id)
+bool check_path_cutting(LGPoint new_sq, signed char path_id)
 {
    LGPoint pt;
    char count;
@@ -236,7 +236,7 @@ errtype check_requests(bool priority_only)
 }
 
 
-errtype delete_path(char path_id)
+errtype delete_path(signed char path_id)
 {
    // To delete, just mark the path as unused and zero out its data
    if ((path_id < 0) || (path_id >= MAX_PATHS))
@@ -394,7 +394,7 @@ short tile_height(MapElem *pme, char dir, bool floor)
 
 #define CRITTERS_OPEN_UNLOCKED_DOORS
 
-bool pf_check_doors(MapElem *pme, char dir, ObjID *open_door)
+bool pf_check_doors(MapElem *pme, signed char dir, ObjID *open_door)
 {
    ObjRefID curr;
    ObjID id, which_obj = OBJ_NULL;
@@ -446,7 +446,7 @@ bool pf_check_doors(MapElem *pme, char dir, ObjID *open_door)
 
 // Returns whether or not the two squares can be freely traveled
 // between with respect to door-like objects in the squares.
-bool pf_obj_doors(MapElem *pme1, MapElem *pme2, char dir, ObjID *open_door)
+bool pf_obj_doors(MapElem *pme1, MapElem *pme2, signed char dir, ObjID *open_door)
 {
    bool retval;
 //   Warning(("Top of pf_obj_door!\n"));

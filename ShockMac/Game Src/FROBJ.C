@@ -27,7 +27,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Citadel Renderer
  *  object draw/setup code
  */
+
 #define __FROBJ_SRC
+
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
 
 #include <stdlib.h>
 

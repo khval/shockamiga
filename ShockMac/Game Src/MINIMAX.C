@@ -24,6 +24,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #ifdef LOST_TREASURES_OF_MFD_GAMES
 #include <limits.h>
 #include <string.h>

@@ -33,6 +33,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // All MFD infrastructure belongs here, all expose/handler callbacks
 // belong in mfdfunc.c
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <stdlib.h>
 #include <string.h>
 

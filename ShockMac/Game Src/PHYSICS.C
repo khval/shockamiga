@@ -1568,7 +1568,7 @@ errtype collide_objects(ObjID collision, ObjID victim, int bad)
       int cp_num;
       ObjLoc   loc = objs[collision].loc;
       extern ObjID damage_sound_id;
-      extern char damage_sound_fx;
+      extern signed char damage_sound_fx;
       bool special_proj = FALSE;
 
       // set that we've already collided this time

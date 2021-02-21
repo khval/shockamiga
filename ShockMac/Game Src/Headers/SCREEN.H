@@ -77,7 +77,8 @@ void generic_reg_init(bool create_reg, LGRegion *reg, LGRect *rct, uiSlab *slb, 
 // Globals
 #ifdef __SCREEN_SRC
 uchar *default_font_buf;
-LGRegion *root_region, *mainview_region, *status_region, *inventory_region_game;
+extern LGRegion *root_region;
+LGRegion *mainview_region, *status_region, *inventory_region_game;
 LGRegion *pagebutton_region_game;
 LGCursor globcursor, wait_cursor, fire_cursor;
 frc *normal_game_fr_context;

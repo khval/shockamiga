@@ -23,6 +23,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * $Date: 1994/11/25 16:58:15 $
  */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
+
 #include <stdlib.h>
 #include <string.h> // for memset
 

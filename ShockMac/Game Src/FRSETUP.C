@@ -122,9 +122,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
  */
 
-#include <stdlib.h>  // I HATE THIS
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
 
+#include <stdlib.h>  
 
 #define __FRSETUP_SRC
 #include "frcamera.h"

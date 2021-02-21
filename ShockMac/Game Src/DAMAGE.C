@@ -23,6 +23,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * $Date: 1994/10/27 04:56:12 $
  */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <stdlib.h>
 
 #include "Shock.h"
@@ -84,7 +88,7 @@ int shield_absorb_damage(int damage, ubyte dtype, byte shield_absorb, ubyte shie
 bool kill_player(void);
 void regenerate_player(void);
 void player_dies();
-ubyte damage_player(int damage, ubyte dtype, ubyte flags);
+bool damage_player(int damage, ubyte dtype, ubyte flags);
 void slow_proj_hit(ObjID id, ObjID victim);
 void critter_hit_effect(ObjID target, ubyte effect,Combat_Pt location, int damage, int max_damage);
 
@@ -541,7 +545,7 @@ void player_dies()
 
 #define DAMAGE_DIFFICULTY ((global_fullmap->cyber) ? 3 : 0)
 
-ubyte damage_player(int damage, ubyte dtype, ubyte flags)
+bool damage_player(int damage, ubyte dtype, ubyte flags)
 {
    ubyte *cur_hp;
    short rawval;
@@ -549,18 +553,18 @@ ubyte damage_player(int damage, ubyte dtype, ubyte flags)
    char dlev, dmg_type=DMG_BLOOD;
 
    if (secret_render_fx > 0)
-      return 0;
+      return false;
 
    if ((damage <= 0) || (player_struct.hit_points==0))     // 0 hp is already dead, eh?
-      return 0;
+      return false;
 
    if (global_fullmap->cyber && !player_struct.difficulty[CYBER_DIFF_INDEX])
-      return 0;
+      return false;
 
    cur_hp= (global_fullmap->cyber) ?
       &player_struct.cspace_hp : &player_struct.hit_points;
 
-   shield_used = FALSE;
+   shield_used = false;
 
    // check if shields should play a role
    if ((dtype==RADIATION_TYPE)||(dtype==BIO_TYPE))
@@ -592,7 +596,7 @@ ubyte damage_player(int damage, ubyte dtype, ubyte flags)
    }
 
    if (damage<=0)
-      return 0;
+      return false;
 
 #ifdef WACKY_STATIC_USAGE
    // Play digi FX should go in here when we have appropriate SFX
@@ -626,7 +630,7 @@ ubyte damage_player(int damage, ubyte dtype, ubyte flags)
 #endif 
                {
                   *cur_hp = 0;
-                  dead = TRUE;
+                  dead = true;
 
                   // if we're carrying an object - let's drop it here!
                   if (object_on_cursor != OBJ_NULL)

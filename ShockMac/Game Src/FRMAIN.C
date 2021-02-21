@@ -49,6 +49,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #define __FRMAIN_SRC
+
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include "frtypes.h"
 #include "frintern.h"
 #include "frparams.h"

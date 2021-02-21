@@ -192,7 +192,7 @@ typedef struct _Player {
    uchar      mfd_access_puzzles[64];							// this is 4 times as much as that hardcoded 8 up there
                                                          					 		// who knows how much we really need, hopefully in soon
                                                          					 		// KLC - changed to 64
-   char      mfd_save_slot[NUM_MFDS];
+   signed char      mfd_save_slot[NUM_MFDS];
 
    // Inventory stuff, in general, a value of zero will indicate an empty slot
    // indices are drug/grenade/ware "types" 

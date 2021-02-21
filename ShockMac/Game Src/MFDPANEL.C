@@ -23,6 +23,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * $Date: 1994/11/14 03:30:50 $
  */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>
@@ -520,7 +524,7 @@ void mfd_setup_wirepanel(uchar special, ObjID id)
    mfd_notify_func(MFD_ACCESSPANEL_FUNC, MFD_INFO_SLOT, TRUE, MFD_ACTIVE, TRUE);
 }
 
-bool mfd_solve_wirepanel()
+uchar mfd_solve_wirepanel()
 {
    wirePosPuzzle *wppz=(wirePosPuzzle*)&player_struct.mfd_access_puzzles[0];
    int wire, swapper, targ;
@@ -1018,7 +1022,7 @@ void gpz_add_gate(gridFlowPuzzle *gfpz, ObjID me)
    return;
 }
 
-bool mfd_solve_gridpanel()
+uchar mfd_solve_gridpanel()
 {
    gridFlowPuzzle *gfpz=(gridFlowPuzzle*)&player_struct.mfd_access_puzzles[0];
    gridFlowPuzzle solved;

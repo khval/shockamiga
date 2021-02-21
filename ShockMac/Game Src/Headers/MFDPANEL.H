@@ -184,5 +184,5 @@ void gpz_4int_init(gridFlowPuzzle *gfpz,uint p1,uint p2,uint p3,uint p4);
 void gpz_4int_update(gridFlowPuzzle *gfpz);
 
 #define last_access_help_string (*((int*)&player_struct.mfd_func_data[MFD_ACCESSPANEL_FUNC][0]))
-#define access_primary_mfd (*(((char*)&player_struct.mfd_func_data[MFD_ACCESSPANEL_FUNC][0]+sizeof(int))))
+#define access_primary_mfd (*(((signed char*)&player_struct.mfd_func_data[MFD_ACCESSPANEL_FUNC][0]+sizeof(int))))
 #define grid_primary_mfd (*(((char*)&player_struct.mfd_func_data[MFD_GRIDPANEL_FUNC][0])))

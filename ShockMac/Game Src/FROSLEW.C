@@ -54,6 +54,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
  */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
+
 #define __FROSLEW_SRC
 #include "fauxrint.h"
 #include "froslew.h"

@@ -16,6 +16,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
  
 */
+
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <string.h>
 
 #include "Shock.h"
@@ -210,7 +215,7 @@ errtype obj_load_art(bool flush_all)
 	{
 		FSSpec	fSpec;
 		
-		FSMakeFSSpec(gCDDataVref, gCDDataDirID, "\pobjart.rsrc", &fSpec);
+		FSMakeFSSpec(gCDDataVref, gCDDataDirID, "\\pobjart.rsrc", &fSpec);
 		objfnum = ResOpenFile(&fSpec);
 		if (objfnum < 0)
 			critical_error(CRITERR_RES|5);

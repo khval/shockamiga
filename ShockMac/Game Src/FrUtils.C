@@ -24,6 +24,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *  Contiains Mac specific utils for the renderer (fast draw slot view, full screen, etc.)
  *
  */
+
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
  
  #include "FrUtils.h"
  #include "Shock.h"

@@ -27,6 +27,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Memory management and manipulation functions
 // for Cyberia
 #define __CYBMEM_SRC
+
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include "ShockDialogs.h"
 
 #include "cybmem.h"

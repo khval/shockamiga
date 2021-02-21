@@ -158,7 +158,7 @@ typedef struct {
 #endif
 
 typedef struct {
-	char ph;
+	signed char ph;
    byte type;
    short current_hp;       
    ubyte make_info;                    // maker, as in Zortech MK III laser rifle or whatever

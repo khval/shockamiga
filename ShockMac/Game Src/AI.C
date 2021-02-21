@@ -25,6 +25,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define __AI_SRC
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <stdlib.h>
 
 #include "ai.h"

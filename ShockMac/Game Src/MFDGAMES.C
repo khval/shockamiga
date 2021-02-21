@@ -24,6 +24,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -106,10 +110,10 @@ void Rect_gr_rect(LGRect *r);
 // ball and player movement code
 typedef struct {
    uchar game_mode;
-   char  ball_pos_x, ball_pos_y;
-   char  ball_dir_x, ball_dir_y;
-   char  p_pos, p_spd;
-   char  c_pos, c_spd;
+   signed char  ball_pos_x, ball_pos_y;
+   signed char  ball_dir_x, ball_dir_y;
+   signed char  p_pos, p_spd;
+   signed char  c_pos, c_spd;
    uchar c_score;
    uchar p_score;
    uchar last_point;
@@ -121,7 +125,7 @@ typedef struct
    uchar game_mode;
    ushort save_time;
    // current QIX endpoints
-   char x[2],dx[2],y[2],dy[2];
+   signed char x[2],dx[2],y[2],dy[2];
    uchar color;
 } menu_state;
 
@@ -129,8 +133,8 @@ typedef struct {
    uchar  game_mode;     // current game mode
    uchar  lane_cnt;      // current lane count
    uchar  diff;          // 0-0xf chance of a new car per lane
-   char   player_lane;   // current player line
-   char   player_move;   // which way we are going
+   signed char   player_lane;   // current player line
+   signed char   player_move;   // which way we are going
    ushort lanes[8];      // two bits for each
    uchar  game_state;    // have we lost
    uint   frame_cnt;     // how many frames at this difficulty
@@ -141,9 +145,9 @@ typedef struct
 {
 	// shared state with Ping
    uchar game_mode;
-   char  ball_pos_x, ball_pos_y;
-   char  ball_dir_x, ball_dir_y;
-   char  p_pos, p_spd;
+   signed char  ball_pos_x, ball_pos_y;
+   signed char  ball_dir_x, ball_dir_y;
+   signed char  p_pos, p_spd;
 
 	// brick state
    ushort rows[3];	// BOTS_NUM_ROWS
@@ -2106,7 +2110,7 @@ static int ttt_fullness(tictactoe* st)
    return ret;
 }
 
-static char move_to_index(char move,tictactoe* st)
+static char move_to_index(signed char move,tictactoe* st)
 {
    int i;
    bool empty;
@@ -2427,7 +2431,8 @@ wing_star *wing_st = (wing_star *) (hideous_secret_game_storage + HIDEOUS_GAME_S
 // so I note that all of these variables should be in the
 // player struct, that is in the mfd game state, and I'll
 // fix that later.
-static enum WingmanMode
+
+enum WingmanMode
 {
   WINGMAN_FORMATION,
   WINGMAN_ATTACK

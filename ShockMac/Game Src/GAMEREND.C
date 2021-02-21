@@ -25,6 +25,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define __GAMEREND_SRC
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
+
 #include <stdlib.h>
 
 #include "tools.h"
@@ -574,10 +579,11 @@ short vhold_shift = 0;
 
 #define FULL_CONVERT_X  
 
+extern void hud_do_objs(short xtop, short ytop, short xwid, short ywid, bool reverse);
+
 // returns whether to send the bitmap out in the render
 bool gamesys_draw_func(void *fake_dest_canvas, void *fake_dest_bm, int x, int y, int flags)
 { 
-   extern hud_do_objs(short xtop, short ytop, short xwid, short ywid, bool rev);
    grs_canvas *dest_canvas = (grs_canvas *)fake_dest_canvas;
    grs_bitmap *dest_bm = (grs_bitmap *)fake_dest_bm;
    uchar *orig_bits;
