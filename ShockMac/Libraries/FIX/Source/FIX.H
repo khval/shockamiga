@@ -325,7 +325,7 @@ fix fix_safe_pyth_dist (fix a, fix b);
 // Returns 0 if x < 0
 fix fix_sqrt (fix x);
 
-#if defined(powerc) || defined(__powerc) || (__amigaos4__)
+#if defined(powerc) || defined(__powerc) || (__GNUC__)
 long quad_sqrt(long hi, long lo);
 #else
 asm long quad_sqrt(long hi, long lo);
