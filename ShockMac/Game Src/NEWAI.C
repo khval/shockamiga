@@ -447,7 +447,7 @@ char dir_table[3][3] =
 errtype follow_pathfinding(ObjID id, ObjSpecID osid)
 {
    LGPoint sq,csq;
-   char steps_left, path_id,newdir;
+   signed char steps_left, path_id,newdir;
    ObjID open_me = OBJ_NULL;
 
    path_id = objCritters[osid].path_id;

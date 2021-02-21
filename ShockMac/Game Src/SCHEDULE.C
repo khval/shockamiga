@@ -180,7 +180,7 @@ bool register_h_event(uchar x, uchar y, bool floor, char* sem, char* key, bool n
    }
 }
 
-void unregister_h_event(char sem)
+void unregister_h_event(signed char sem)
 {
    if(sem<0 || sem>=NUM_HEIGHT_SEMAPHORS) return;
    h_sems[sem].inuse--;
@@ -538,7 +538,7 @@ void run_schedules(void)
    schedule_run(&game_seconds_schedule,TICKS2TSTAMP(player_struct.game_time));
 }
 
-/*¥¥¥
+/*ï¿½ï¿½ï¿½
 bool schedule_test_hotkey(short keycode, ulong context, void* data)
 {
    SchedEvent e;

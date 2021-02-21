@@ -51,14 +51,14 @@ typedef struct {
    ubyte mood;
    ubyte orders;
    ubyte current_posture;
-   char x1;
-   char y1;
-   char dest_x;                        // Current destination coordinates
-   char dest_y;
-   char pf_x;       // where we are currently pathfinding to (what our current step is)
-   char pf_y;
-   char path_id;    // what pathfinding track we are on
-   char path_tries; // how many frames have we been trying to get to the
+   signed short x1;
+   signed short y1;
+   signed short dest_x;                        // Current destination coordinates
+   signed short dest_y;
+   signed short pf_x;       // where we are currently pathfinding to (what our current step is)
+   signed short pf_y;
+   signed char path_id;    // what pathfinding track we are on
+   signed char path_tries; // how many frames have we been trying to get to the
                     // next step on our pathfinding?
    ObjID loot1, loot2;                 // Some loot to get when we destroy critter
    // Note: Num frames is gotten from object properties
@@ -84,14 +84,14 @@ typedef struct {
    ubyte mood;
    ubyte orders;
    ubyte current_posture;
-   char x1;
-   char y1;
-   char dest_x;                        // Current destination coordinate
-   char dest_y;
-   char old_x;    // the bin we were in prior to being in this bin
-   char old_y;
-   char last_x;   // the bin we were in last ai cycle
-   char last_y;
+   signed short x1;
+   signed short y1;
+   signed short dest_x;                        // Current destination coordinate
+   signed short dest_y;
+   signed short old_x;    // the bin we were in prior to being in this bin
+   signed short old_y;
+   signed short last_x;   // the bin we were in last ai cycle
+   signed short last_y;
    ObjID loot1, loot2;                 // Some loot to get when we destroy critter
    // Note: Num frames is gotten from object properties
 } oldObjCritter;
