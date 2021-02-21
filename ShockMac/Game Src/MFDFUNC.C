@@ -33,10 +33,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // This file is for callbacks only, actual infrastructure belongs
 // in newmfd.c
 
-#ifdef __amigaos4__
-#include "amigaos4.h"
-#endif
-
 #include <string.h>
 
 #include "objprop.h" // temp
@@ -2768,7 +2764,7 @@ void install_keypad_hotkeys(void)
 bool mfd_keypad_handler(MFD* m, uiEvent* ev)
 {
    bool retval = FALSE;
-   char n;
+   signed char n;
    uiCookedKeyEvent *e = (uiCookedKeyEvent *)ev;
 
    if (e->type != UI_EVENT_KBD_COOKED)
