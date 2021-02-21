@@ -441,7 +441,7 @@ void star_rand(uchar col,uchar range)
 
 extern g3s_point 	*first_free;   
 extern g3s_matrix view_matrix;  
-#if (defined(powerc) || defined(__powerc))	
+#if (defined(powerc) || defined(__powerc) || defined(__GNUC__) )	
 extern int code_point(g3s_point *pt);
 #else
 extern asm int code_point(g3s_point *pt);

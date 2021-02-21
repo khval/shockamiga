@@ -629,7 +629,16 @@ void terrfunc_one_map_square(int fmask)
 }
 
 #define FACELET_MASK_Z   0
+
+#ifdef __GNUC__
+
+#define fcs(v1,v2)      (FACELET_MASK_##v1 | FACELET_MASK_##v2)
+
+#else
+
 #define fcs(v1,v2)      (FACELET_MASK_##v1##|FACELET_MASK_##v2##)
+
+#endif
 
 // probably could be just 5,5 by having it algorithimically flip the list if needed
 uchar tf_wall_check[5][2][5]=
