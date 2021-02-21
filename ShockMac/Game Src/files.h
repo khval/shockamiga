@@ -4,8 +4,6 @@
 
 #define __files_h__
 
-#define Gadget _ss_Gadget
-
 #include "lg_types.h"
 #include "LG.H"
 #include "LGSPRNTF.H"
@@ -25,6 +23,7 @@
 #include "HOTKEY.H"
 #include "CURDAT.H"
 #include "TNGAPP.H"
+#include "PQUEUE.H"
 
 #endif
 

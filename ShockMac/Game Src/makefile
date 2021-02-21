@@ -22,6 +22,8 @@ DEFS = -DLZW_BUFF_SIZE=1024
 
 files =
 
+# files += _del_trigger.c
+
 # files that compiles.
 
 files += WEAPONS.C
@@ -84,61 +86,61 @@ files += HUD.C
 files += GAMEREND.C
 files += AMMOMFD.C
 files += AI.C 
+files += TRIGGER.C
+files += TFDIRECT.C
+files += STAR.C
+files += SIDEICON.C
+files += SCHEDULE.C
+files += POPUPS.C
+files += PHYSICS.C 
+files += PATHFIND.C
+files += OBJUSE.C
+files += MLIMBS.C
+files += MFDFUNC.C
+files += MAP.C 
+files += GRENADES.C
+files += GAMESYS.C
+files += FROSLEW.C
+files += AMAP.C
+files += WRAPPER.C
 
 # not working....
 
- files += TRIGGER.C
- files += TFDIRECT.C
- files += TEXTMAPS.C
- files += STAR.C 
- files += SNDCALL.C
- files += SIDEICON.C
- files += SETUP.C
- files += SCHEDULE.C
- files += SAVELOAD.C 
- files += POPUPS.C
- files += PLAYER.C
- files += PHYSICS.C 
- files += PATHFIND.C
- files += OBJUSE.C
- files += OBJSIM.C
- files += OBJECTS.C
- files += NEWMFD.C
- files += NEWAI.C
- files += MUSICAI.C
- files += MLIMBS.C
- files += MFDFUNC.C
- files += MAP.C 
- files += LEANMETR.C
- files += INVENT.C
- files += INPUT.C
- files += INIT.C
- files += HKEYFUNC.C
- files += GRENADES.C
- files += GAMEWRAP.C 
- files += GAMESYS.C
- files += GAMELOOP.C
- files += FULLSCRN.C 
- files += FrUtils.C
- files += FRTERR.C 
- files += FRTABLES.C
- files += FRSETUP.C
- files += FRPIPE.C 
- files += FROSLEW.C
- files += FRCAMERA.C
- files += EMAIL.C
- files += DIGIFX.C 
- files += CYBRND.C
- files += CYBMEM.C
- files += CRITERR.C
- files += CITRES.C
- files += BIOHELP.C
- files += AUDIOLOG.C
- files += AMAPLOOP.C 
- files += AMAP.C
- files += AIRUPT.C
- files += WRAPPER.C
- files += VMAIL.C 
+# files += TEXTMAPS.C
+# files += SNDCALL.C
+# files += SETUP.C
+# files += SAVELOAD.C 
+# files += PLAYER.C
+# files += OBJSIM.C
+# files += OBJECTS.C
+# files += NEWMFD.C
+# files += NEWAI.C
+# files += MUSICAI.C
+# files += LEANMETR.C
+# files += INVENT.C
+# files += INPUT.C
+# files += INIT.C
+# files += HKEYFUNC.C
+# files += GAMEWRAP.C 
+# files += GAMELOOP.C
+# files += FULLSCRN.C 
+# files += FrUtils.C
+# files += FRTERR.C 
+# files += FRTABLES.C
+# files += FRSETUP.C
+# files += FRPIPE.C 
+# files += FRCAMERA.C
+# files += EMAIL.C
+# files += DIGIFX.C 
+# files += CYBRND.C
+# files += CYBMEM.C
+# files += CRITERR.C
+# files += CITRES.C
+# files += BIOHELP.C
+# files += AUDIOLOG.C
+# files += AMAPLOOP.C 
+# files += AIRUPT.C
+files += VMAIL.C 
 
 files_o1 = ${files:.C=.o}
 files_o = ${files_o1:.c=.o}

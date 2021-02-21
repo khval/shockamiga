@@ -1,4 +1,7 @@
 
+#ifndef __amigaos4_h__
+#define __amigaos4_h__
+
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,6 +11,12 @@
 #include <proto/exec.h>
 #include <proto/dos.h>
 #include <proto/intuition.h>
+
+// conflicts with AmigaOS.
+
+#define Region _ss_Region
+#define Gadget _ss_Gadget
+
 
 // -----------------------------------------------------------------------------------------------------
 // Trying to define stuff maybe std to MacOS, but AmigaOS does not have....
@@ -21,32 +30,20 @@ typedef struct Window * WindowPtr;
 typedef uint32_t MenuHandle;		//  I'm thinking emulate this in a array
 typedef uint32_t RgnHandle;		//  I'm thinking emulate this in a array
 
-typedef uint32_t Handle;			//  its possible this used as mutex lock.
+typedef void * Handle;			//  its possible this used as mutex lock.
 
 typedef uint32_t CursHandle;		//  I'm thinking emulate this in a array
 
-typedef struct
-{
-	void *thePort;
-} QDGlobals;
 
 typedef int TimerUPP;
 
 
 // gr short for graphics, i guess.
 
-// draw bitmap
-
-typedef struct
-{
-	int xxxx;
-} Rect;
 
 typedef bool Boolean;
 typedef FILE FSSpec;
-
 typedef int snd_digi_parms;		// most likely incorrect
-typedef void * PQueue;			// most likely incorrect
 typedef struct Process TMTask;		// guess, we need a Amiga process here.
 typedef int RndStream;
 typedef void * Ptr;
@@ -54,12 +51,15 @@ typedef char *GrafPtr;
 typedef void *GrafPort;
 typedef void *CGrafPort;
 typedef void *CGrafPtr;
-
 typedef int PixMapHandle;
 typedef int CTabHandle;
 
 typedef uint32_t OSErr;
 typedef uint32_t ResType;
+
+typedef int32_t Cursor;
+typedef int32_t Rect;
+typedef int32_t Region;
 
 #define RndRange(dummy,min,max) ((rand()%(max-min))+min)
 
@@ -70,14 +70,11 @@ extern void HUnlock( Handle h );
 extern void ReleaseResource( Handle h );
 extern void numtostring( int input, char *output );
 extern void *NewPtr( uint32_t size );	// alloc memory
-extern void DisposPtr( void *ptr );	// free memory
+extern void DisposPtr( void *ptr );	// free memory, (this one is used in Screen.C)
+extern void DisposePtr( void *ptr );	// free memory
 
 // not sure about this might be defined some where else.
 
-static void DisposePtr( void *ptr )
-{
-	printf("%s:%d:%s(%08x)\n",__FILE__,__LINE__,__FUNCTION__,ptr);
-}
 
 #define OK true
 
@@ -119,4 +116,6 @@ enum
 #include "files.h"
 
 extern void FSMakeFSSpec( int gDataVref, int gDataDirID, const char *CURRENT_GAME_FNAME, FSSpec *currSpec);
+
+#endif
 
