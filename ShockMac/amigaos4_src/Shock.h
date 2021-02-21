@@ -115,7 +115,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //--------------------
 //  Function Prototypes
 //--------------------
+
+#if defined( __amigaos4__)
+int main(void);
+#else
 void main(void);
+#endif
+
 void HandleEvents(void);
 void UpdateWindow(WindowPtr wind);
 void DoCommand(unsigned long mResult);
