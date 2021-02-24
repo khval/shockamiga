@@ -18,14 +18,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 //==============================================================================
 //
-//		System Shock - ©1994-1995 Looking Glass Technologies, Inc.
+//		System Shock - ï¿½1994-1995 Looking Glass Technologies, Inc.
 //
 //		MacTune.h	-	Rewrite of Shock's MLIMBS.H file to use QuickTime MIDI rather than AIL.
 //
 //==============================================================================
 
-
+#ifndef __amigaos4__
 #include <Timer.h>
+#endif
 
 //-----------------
 //  TYPES & DEFINES
