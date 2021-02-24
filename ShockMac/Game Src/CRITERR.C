@@ -50,7 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // ------------------------------
 
 
-static char* criterr_type_messages[CRITERR_CLASSES] =
+static const char* criterr_type_messages[CRITERR_CLASSES] =
    {
       "Test", 
       "Configuration error",
@@ -73,7 +73,7 @@ static char* criterr_type_messages[CRITERR_CLASSES] =
 typedef struct _code_string
 {
    short code;
-   char* message;
+   const char* message;
 } _code_string;
 
 static _code_string code_messages[] =
@@ -179,7 +179,7 @@ void critical_error(short code)
 {
 	char		buf[256];
 	char		explain[256];
-	char		*s;
+	const char		*s;
 	int		i, len;
 	
 	if (code == NO_CRITICAL_ERROR)
