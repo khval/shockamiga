@@ -144,7 +144,7 @@ errtype obj_settle_func(ObjID id);
 bool death_check(ObjID id, bool* destr);
 
 
-errtype set_door_data(ObjID id); // ¥¥¥ here for now
+errtype set_door_data(ObjID id); // ï¿½ï¿½ï¿½ here for now
 
 errtype set_door_data(ObjID id)
 {
@@ -276,7 +276,7 @@ Ref ref_from_critter_data(ObjID, int triple, ubyte posture, ubyte frame, ubyte v
    RefTable *prt;
    char curr_frames;
    bool load_all_views = TRUE;
-//¥¥¥   extern ulong page_amount;
+//ï¿½ï¿½ï¿½   extern ulong page_amount;
 
    // Set mirror pointer
 //   if (pmirror != NULL)
@@ -289,9 +289,9 @@ Ref ref_from_critter_data(ObjID, int triple, ubyte posture, ubyte frame, ubyte v
          break;
    }
 
-//¥¥¥   if (page_amount > CRITTER_LOADING_PAGE_LIMIT)
-//¥¥¥      load_all_views = FALSE;
-//¥¥¥   else
+//ï¿½ï¿½ï¿½   if (page_amount > CRITTER_LOADING_PAGE_LIMIT)
+//ï¿½ï¿½ï¿½      load_all_views = FALSE;
+//ï¿½ï¿½ï¿½   else
    {
       for (p=STANDING_CRITTER_POSTURE; p <= MOVING_CRITTER_POSTURE; p++)
       {
@@ -1108,7 +1108,7 @@ errtype obj_move_to_vel(ObjID id, ObjLoc *newloc, bool phys_tel, fix x_dot, fix 
 			EDMS_holistic_teleport(objs[id].info.ph, &new_state);
 	}
    
-   if (objs[id].loc.x == -1)
+   if (objs[id].loc.x == 255)		// changed from -1 to 255, x is uchar type...
    {
       ObjRefState newref;
 
@@ -1796,7 +1796,7 @@ errtype obj_load_properties()
 	cp += NUM_ELEVATOR_DOOR;
 	cp += NUM_SPECIAL_DOOR;
 	
-	cp -= 2;											//¥¥¥ We got off here somehow.  Check into it!!!
+	cp -= 2;											//ï¿½ï¿½ï¿½ We got off here somehow.  Check into it!!!
 
 	//----------------
 	//  ANIMATING OBJECTS
@@ -2434,7 +2434,7 @@ errtype obj_floor_func(ObjID id)
    return(OK);
 }
 
-#ifdef NOT_YET //¥¥¥ later
+#ifdef NOT_YET //ï¿½ï¿½ï¿½ later
 
 #ifdef PLAYTEST
 #pragma disable_message(202)
@@ -2899,7 +2899,7 @@ void spew_about_stuff(char *txt, ObjID id)
 #define spew_about_stuff(txt, id)
 #endif
 
-#endif //NOT_YET ¥¥¥
+#endif //NOT_YET ï¿½ï¿½ï¿½
 
 extern bool robot_antisocial;
 
