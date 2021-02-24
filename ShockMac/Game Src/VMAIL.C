@@ -93,22 +93,22 @@ errtype play_vmail(byte vmail_no)
 		switch (vmail_no)
 		{
 			case 0:		// shield
-				FSMakeFSSpec(gCDDataVref, gCDDataDirID, "\pShields On", &fSpec);
+				FSMakeFSSpec(gCDDataVref, gCDDataDirID, "\\pShields On", &fSpec);
 				break;
 			case 1:		// grove
-				FSMakeFSSpec(gCDDataVref, gCDDataDirID, "\pJettison Pod", &fSpec);
+				FSMakeFSSpec(gCDDataVref, gCDDataDirID, "\\pJettison Pod", &fSpec);
 				break;
 			case 2:		// bridge
-				FSMakeFSSpec(gCDDataVref, gCDDataDirID, "\pDetach", &fSpec);
+				FSMakeFSSpec(gCDDataVref, gCDDataDirID, "\\pDetach", &fSpec);
 				break;
 			case 3:		// laser1
-				FSMakeFSSpec(gCDDataVref, gCDDataDirID, "\pLaser Malfunction", &fSpec);
+				FSMakeFSSpec(gCDDataVref, gCDDataDirID, "\\pLaser Malfunction", &fSpec);
 				break;
 			case 4:		// status
-				FSMakeFSSpec(gCDDataVref, gCDDataDirID, "\pCitadel Status", &fSpec);
+				FSMakeFSSpec(gCDDataVref, gCDDataDirID, "\\pCitadel Status", &fSpec);
 				break;
 			case 5:		// explode1
-				FSMakeFSSpec(gCDDataVref, gCDDataDirID, "\pAuto-destruct", &fSpec);
+				FSMakeFSSpec(gCDDataVref, gCDDataDirID, "\\pAuto-destruct", &fSpec);
 				break;
 		}
 		PlayVMail(&fSpec, 120, 90);

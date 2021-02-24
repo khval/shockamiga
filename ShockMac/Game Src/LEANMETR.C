@@ -324,7 +324,7 @@ void lean_icon(LGPoint* pos, grs_bitmap** icon, int* inum)
 		*icon = &(f->bm);
 	}
 	else
-		DebugStr("\pNo lean resource bitmap!");
+		DebugStr("No lean resource bitmap!");
 
 	// Determine where to draw the bitmap.
 	pos->y = 53 - (*icon)->h;
@@ -558,7 +558,7 @@ void update_lean_meter(bool force)
 			sbm = &(f->bm);
 		}
 		else
-			DebugStr("\pNo shield resource bitmap!");
+			DebugStr("No shield resource bitmap!");
 		
 		offset = shield_offsets[inum];
 		gr_bitmap(sbm, r.ul.x - offset.x, r.ul.y - offset.y);

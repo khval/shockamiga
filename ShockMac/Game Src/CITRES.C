@@ -117,7 +117,7 @@ errtype master_load_bitmap_from_res(grs_bitmap *bmp, Id id_num, int i, RefTable 
    if (!tmp_mem) LG_memcpy(p,f+1,f->bm.w * f->bm.h * sizeof(uchar));
 //еее
 if (bmp == NULL)
-	DebugStr("\pTrying to assign to a null bmp pointer!");
+	DebugStr("Trying to assign to a null bmp pointer!");
 //еее
    *bmp = f->bm;
    bmp->bits = p;
