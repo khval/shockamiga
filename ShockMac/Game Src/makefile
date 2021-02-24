@@ -103,21 +103,29 @@ files += GAMESYS.C
 files += FROSLEW.C
 files += AMAP.C
 files += WRAPPER.C
+files += VMAIL.C 
+files += AMAPLOOP.C 
+files += BIOHELP.C
+files += CITRES.C
+files += CRITERR.C
+files += CYBMEM.C
+files += CYBRND.C
+files += FRSETUP.C
+files += SETUP.C
+files += OBJECTS.C
+files += NEWAI.C
+files += LEANMETR.C
+files += INVENT.C
 
 # not working....
 
 # files += TEXTMAPS.C
 # files += SNDCALL.C
-# files += SETUP.C
 # files += SAVELOAD.C 
 # files += PLAYER.C
 # files += OBJSIM.C
-# files += OBJECTS.C
 # files += NEWMFD.C
-# files += NEWAI.C
 # files += MUSICAI.C
-# files += LEANMETR.C
-# files += INVENT.C
 # files += INPUT.C
 # files += INIT.C
 # files += HKEYFUNC.C
@@ -127,27 +135,20 @@ files += WRAPPER.C
 # files += FrUtils.C
 # files += FRTERR.C 
 # files += FRTABLES.C
-# files += FRSETUP.C
 # files += FRPIPE.C 
 # files += FRCAMERA.C
 # files += EMAIL.C
 # files += DIGIFX.C 
-# files += CYBRND.C
-# files += CYBMEM.C
-# files += CRITERR.C
-# files += CITRES.C
-# files += BIOHELP.C
 # files += AUDIOLOG.C
-# files += AMAPLOOP.C 
 # files += AIRUPT.C
-files += VMAIL.C 
+
 
 files_o1 = ${files:.C=.o}
 files_o = ${files_o1:.c=.o}
 
 
 all: ${files_o}
-	echo All done
+	@Echo  "*E[1m All done *E[0m"
 
 %.o: %.C
 	$(C) $(CPPFLAGS) $(INC) $(DEFS) $(CXXFLAGS) -c $< -o $@
@@ -157,4 +158,3 @@ all: ${files_o}
 
 clean:
 	delete ${files_o}
-

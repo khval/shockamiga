@@ -30,13 +30,16 @@ typedef struct Window * WindowPtr;
 typedef uint32_t MenuHandle;		//  I'm thinking emulate this in a array
 typedef uint32_t RgnHandle;		//  I'm thinking emulate this in a array
 
-typedef void * Handle;			//  its possible this used as mutex lock.
+typedef char ** Handle;			//  its possible this used as mutex lock.
 
 typedef uint32_t CursHandle;		//  I'm thinking emulate this in a array
 
-
 typedef int TimerUPP;
 
+typedef const char ConstStr255Param[256];
+typedef char Str255[256];
+
+typedef char * StringPtr;	
 
 // gr short for graphics, i guess.
 
@@ -45,7 +48,6 @@ typedef bool Boolean;
 typedef FILE FSSpec;
 typedef int snd_digi_parms;		// most likely incorrect
 typedef struct Process TMTask;		// guess, we need a Amiga process here.
-typedef int RndStream;
 typedef void * Ptr;
 typedef char *GrafPtr;
 typedef void *GrafPort;
@@ -61,17 +63,24 @@ typedef int32_t Cursor;
 typedef int32_t Rect;
 typedef int32_t Region;
 
-#define RndRange(dummy,min,max) ((rand()%(max-min))+min)
-
 // I think this are in MacOS, we need a wrapper.
 
 extern void HLock( Handle h );
 extern void HUnlock( Handle h );
+
+extern Handle GetResource( uint16_t item, uint16_t value );
 extern void ReleaseResource( Handle h );
+extern void DisposHandle( Handle h );
+
 extern void numtostring( int input, char *output );
 extern void *NewPtr( uint32_t size );	// alloc memory
 extern void DisposPtr( void *ptr );	// free memory, (this one is used in Screen.C)
 extern void DisposePtr( void *ptr );	// free memory
+extern void DebugStr( const char *txt );
+extern void StopAlert( uint32_t a, uint32_t b);
+extern void BlockMove( char *from, char *to, uint32_t size);
+
+extern long TickCount(void);
 
 // not sure about this might be defined some where else.
 
@@ -111,11 +120,11 @@ enum
 #undef OK
 #endif
 
-#define ok
-
 #include "files.h"
 
 extern void FSMakeFSSpec( int gDataVref, int gDataDirID, const char *CURRENT_GAME_FNAME, FSSpec *currSpec);
+extern void ParamText(uchar *buf, uchar *explain, const char *a, const char *b);
+#define BlockMoveData(dest,src,size) memcpy(dest,src,size)
 
 #endif
 
