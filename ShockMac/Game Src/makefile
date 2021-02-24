@@ -16,7 +16,7 @@ INC += -I ../Libraries/DSTRUCT/Source/
 INC += -I ../Libraries/UI/Source/
 INC += -I ../Libraries/INPUT/Source/
 INC += -I ../Libraries/VOX/Source/
-
+INC += -I ../Libraries/RND/Source/
 
 DEFS = -DLZW_BUFF_SIZE=1024
 

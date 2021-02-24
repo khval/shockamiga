@@ -24,6 +24,8 @@
 #include "CURDAT.H"
 #include "TNGAPP.H"
 #include "PQUEUE.H"
+#include "keydefs.h"
+#include "RND.H"
 
 #endif
 
