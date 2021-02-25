@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define	min(a,b)	(((a) < (b)) ? (a) : (b))
 
 // optimized routines to replace standard C functions
-#if (defined(powerc) || defined(__powerc) || defined(__GNUC__))	
+#if (defined(powerc) || defined(__powerc) || defined(__amigaos4__))	
 extern void *LG_memset(void *dest, int val, unsigned int count);
 extern void *LG_memcpy(void *dest, const void *src, unsigned int count);
 extern void *LG_memmove(void *dest, const void *src, unsigned int count);

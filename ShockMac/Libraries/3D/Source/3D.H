@@ -418,7 +418,7 @@ g3s_phandle g3_rotate_norm(g3s_vector *v);
 g3s_phandle g3_rotate_light_norm(g3s_vector *v);
    //rotate light norm from obj space into viewer space
 
-#if (defined(powerc) || defined(__powerc)) || defined(__GNUC__)
+#if (defined(powerc) || defined(__powerc)) || defined(__amigaos4__)
 int g3_project_point(g3s_phandle p);
 #else
 asm int g3_project_point(g3s_phandle p);
