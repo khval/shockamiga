@@ -449,25 +449,25 @@ fix24 fix24_mul_div (fix24 m0, fix24 m1, fix24 d);
    modify [eax edx];
 */
 
-fix24 fix24_pyth_dist (fix24 a, fix24 b);
-fix24 fix24_fast_pyth_dist (fix24 a, fix24 b);
-fix24 fix24_safe_pyth_dist (fix24 a, fix24 b);
+extern fix24 fix24_pyth_dist (fix24 a, fix24 b);
+extern fix24 fix24_fast_pyth_dist (fix24 a, fix24 b);
+extern fix24 fix24_safe_pyth_dist (fix24 a, fix24 b);
 /* еее Fix this
 fix24 fix24_sqrt (fix24 x);
 #pragma aux fix24_sqrt parm [eax] value [eax] modify [eax ebx ecx edx esi edi]
 */
-void fix24_sincos (fixang theta, fix24 *sin, fix24 *cos);
-fix24 fix24_sin (fixang theta);
-fix24 fix24_cos (fixang theta);
-void fix24_fastsincos (fixang theta, fix24 *sin, fix24 *cos);
-fix24 fix24_fastsin (fixang theta);
-fix24 fix24_fastcos (fixang theta);
-fixang fix24_asin (fix24 x);
-fixang fix24_acos (fix24 x);
-fixang fix24_atan2 (fix24 y, fix24 x);
-fix24 atofix24(char *p);
-char *fix24_sprint (char *str, fix24 x);
-char *fix24_sprint_hex (char *str, fix24 x);
+extern void fix24_sincos (fixang theta, fix24 *sin, fix24 *cos);
+extern fix24 fix24_sin (fixang theta);
+extern fix24 fix24_cos (fixang theta);
+extern void fix24_fastsincos (fixang theta, fix24 *sin, fix24 *cos);
+extern fix24 fix24_fastsin (fixang theta);
+extern fix24 fix24_fastcos (fixang theta);
+extern fixang fix24_asin (fix24 x);
+extern fixang fix24_acos (fix24 x);
+extern fixang fix24_atan2 (fix24 y, fix24 x);
+extern fix24 atofix24(char *p);
+extern char *fix24_sprint (char *str, fix24 x);
+extern char *fix24_sprint_hex (char *str, fix24 x);
 
 
 //============================================
