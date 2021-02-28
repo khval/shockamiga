@@ -1,50 +1,76 @@
 
+libName=libui.a
+
 C=GCC
 
+base=../../
+abase = //
+
+libDir=$(base)LIB/
+
 INC = -I Source
-INC += -I ../../Libraries/H
-INC += -I ../../Libraries/FIX/Source/
+INC += -I $(base)Libraries/H
+INC += -I $(base)Libraries/UI/Source/
+INC += -I $(base)Libraries/LG/Source/
+INC += -I $(base)Libraries/FIX/Source/
 
-files += TNGSLIDR.C
-files += TNGTEMP.C
-files += TNGTEXTG.C
-files += UIRES.C
-files += VMOUSE.C
-files += REGION.C
-files += SLAB.C
-files += SLIDER.C
-files += TEXTGADG.C
-files += TEXTTOOL.C
-files += TNG.C
-files += TNGBARRY.C
-files += TNGFONT.C
-files += TNGMENU.C
-files += TNGPLAIN.C
-files += TNGPUSHB.C
-files += TNGQBOX.C
-files += BUTARRAY.C
-files += CURDRW.C
-files += CURSORS.C
-files += EVENT.C
-files += GADGETS.C
-files += HOTKEY.C
-files += MENU.C
-files += MONOFONT.C
-files += PLAIN.C
-files += PUSHBUTT.C
-files += QBOXGADG.C
-files += REALFONT.C
+libs += -lfix
 
+files += Source/TNGSLIDR.C
+files += Source/TNGTEMP.C
+files += Source/TNGTEXTG.C
+files += Source/UIRES.C
+files += Source/VMOUSE.C
+files += Source/REGION.C
+files += Source/SLAB.C
+files += Source/SLIDER.C
+files += Source/TEXTGADG.C
+files += Source/TEXTTOOL.C
+files += Source/TNG.C
+files += Source/TNGBARRY.C
+files += Source/TNGFONT.C
+files += Source/TNGMENU.C
+files += Source/TNGPLAIN.C
+files += Source/TNGPUSHB.C
+files += Source/TNGQBOX.C
+files += Source/BUTARRAY.C
+files += Source/CURDRW.C
+files += Source/CURSORS.C
+files += Source/EVENT.C
+files += Source/GADGETS.C
+files += Source/HOTKEY.C
+files += Source/MENU.C
+files += Source/MONOFONT.C
+files += Source/PLAIN.C
+files += Source/PUSHBUTT.C
+files += Source/QBOXGADG.C
+files += Source/REALFONT.C
 
 files_o1 = ${files:.C=.o}
 files_o = ${files_o1:.c=.o}
 
-DEFS = -D__USE_INLINE__
+tests = Tests/UITEST.C
 
-all:	 ${files_o}
+tests_elfs = ${tests:.c=.elf}
 
-%.o: Source/%.C
+DEFS = -D__USE_INLINE__ -DNewPtr=malloc -DPtr=void* -DDisposePtr=free
+
+all_files = ${files_o} 
+
+all:  $(all_files) $(libName) $(tests_elfs)
+
+$(libName): ${files_o} 
+	ar rcs $(libDir)$@ ${files_o}
+
+%.o: %.C
 	$(C) $(CPPFLAGS) $(INC) $(DEFS) $(CXXFLAGS) -c $< -o $@
 
-%.o: Source/%.c
+%.o: %.c
 	$(C) $(CPPFLAGS) $(INC) $(DEFS) $(CXXFLAGS) -c $< -o $@
+
+%.elf: %.C
+	$(C) -L../../LIB $(CPPFLAGS) $(INC) $(DEFS) $(CXXFLAGS) $< $(libs) -o $@
+
+clean:
+	delete $(all_files) $(abase)LIB/$(libName)
+
