@@ -19,12 +19,16 @@ covered by the original EULA and must be obeyed as usual.
 Compiling on AmigaOS4
 ---------------------
 
-The build system is missing, create some makefile’s
+The build system on MacOS cannot be used, and AmigaOS text editors do not support MacOS text files, so 0x0D had to replaced by 0x0A in text files.
 
-There are many types not found while compiling, it might have something to do with build system on mac.
+I create makefiles that can build the libs, and game more or less.
 
-It looks like this project might need libdgl
+However this not a SDL project, there is lot MacOS stuff that do not exist on AmigaOS, we can replace everything, or we can emulate it, by implementing something similar, it will wrap to native AmigaOS API’s.
 
+My preferred way is implement the missing stuff, is possible, and change if its not possible, anyway if can find MSDOS version of System Shock source code, we can maybe compare, or maybe MSDOS parts might be more compatible some places.
+
+It looks like this project might need libdgl 
+(Libfix is similar and is included, but there one function I think is missing.)
 
 Compiling on MacOS 9:
 ---------------------
