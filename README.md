@@ -30,6 +30,9 @@ My preferred way is implement the missing stuff, is possible, and change if its 
 It looks like this project might need libdgl 
 (Libfix is similar and is included, but there one function I think is missing.)
 
+the project is heavy based on soft floats, instead of using FPU, this makes me sad, but its not the rights time to fix that. 
+Should be done when everything is compiling and working, so we see what breaks if it’s changed.
+
 Compiling on MacOS 9:
 ---------------------
 
