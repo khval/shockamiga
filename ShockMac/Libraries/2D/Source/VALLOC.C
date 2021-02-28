@@ -43,6 +43,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Put in SVGA hack which should be fixed.
  */
 
+#ifdef __amigaos4__
+typedef unsigned char uchar ;
+#endif
+
 #include "grs.h"
 #include "grd.h"
 #include "valloc.h"

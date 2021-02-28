@@ -28,6 +28,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include "cnvdrv.h"
 
 void (**grd_canvas_table_list[])() = {

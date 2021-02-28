@@ -17,6 +17,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  
 */
 // device driver for standard Mac 640x480 256 color mode
+
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include "grnull.h"
 #include "grd.h"
 #include "MacDev.h"

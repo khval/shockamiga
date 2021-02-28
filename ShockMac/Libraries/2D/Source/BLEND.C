@@ -27,6 +27,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * This file is part of the 2d library.
  */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include "grs.h"
 #include "blncon.h"
 #include "grmalloc.h"
