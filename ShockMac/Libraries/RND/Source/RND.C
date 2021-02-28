@@ -139,7 +139,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
    parm [eax] [edx]  \
    modify [eax edx];
 */
-#if defined(powerc) || defined(__powerc)
+#if defined(powerc) || defined(__powerc) || defined(__GNUC__)
 
 ulong high_umpy(ulong a, ulong b);					//  Code in RndAsm.s
 

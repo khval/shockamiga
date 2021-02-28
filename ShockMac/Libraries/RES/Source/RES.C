@@ -87,9 +87,18 @@ void ResInit()
 //	Allocate initial resource descriptor table, default size (can't fail)
 
 	resDescMax = DEFAULT_RESMAX;
+
+#if defined(__amigaos4__) || defined(__linux__)
+	gResDesc = (ResDesc *) calloc( (DEFAULT_RESMAX + 1) , sizeof(ResDesc) );
+	if (gResDesc == NULL)
+#else
 	gResDesc = (ResDesc *)NewPtrClear( (DEFAULT_RESMAX + 1) * sizeof(ResDesc) );
 	if (MemError())
-		DebugStr("\pResInit: Can't allocate the global resource descriptor table.\n");
+#endif
+
+	{
+		DebugStr("ResInit: Can't allocate the global resource descriptor table.\n");
+	}
 	
 //	gResDesc[ID_HEAD].prev = 0;
 //	gResDesc[ID_HEAD].next = ID_TAIL;
@@ -207,13 +216,19 @@ void ResGrowResDescTable(Id id)
 //			("ResGrowResDescTable: extending to $%x entries\n", newAmt));
 
 //		SetPtrSize((Ptr)gResDesc, newAmt * sizeof(ResDesc));
+
+#if defined(__amigaos4__) || defined(__linux__)
+		growPtr = (char *) malloc(newAmt * sizeof(ResDesc));
+		if ( growPtr != NULL )
+#else
 		growPtr = NewPtr(newAmt * sizeof(ResDesc));
 		if (MemError() != noErr)
+#endif
 		{
-			DebugStr("\pResGrowDescTable: CANT GROW DESCRIPTOR TABLE!!!\n");
+			DebugStr("ResGrowDescTable: CANT GROW DESCRIPTOR TABLE!!!\n");
 			return;
 		}
-		BlockMove(gResDesc, growPtr, currAmt * sizeof(ResDesc));
+		BlockMove( (char *) gResDesc, (char *) growPtr, currAmt * sizeof(ResDesc));
 		DisposePtr((Ptr)gResDesc);
 		gResDesc = (ResDesc *)growPtr;
 		LG_memset(gResDesc + currAmt, 0, (newAmt - currAmt) * sizeof(ResDesc));
@@ -274,7 +289,7 @@ void ResShrinkResDescTable()
 		SetPtrSize(gResDesc, newAmt * sizeof(ResDesc));
 		if (MemError() != noErr)
 		{
-//ï¿½ï¿½ï¿½			Warning(("ResGrowDescTable: RES DESCRIPTOR TABLE BAD!!!\n"));
+//¥¥¥			Warning(("ResGrowDescTable: RES DESCRIPTOR TABLE BAD!!!\n"));
 			return;
 		}
 		resDescMax = newAmt - 1;
