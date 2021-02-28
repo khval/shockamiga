@@ -35,6 +35,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
 */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <string.h>
 
 #include "res.h"
@@ -200,7 +204,7 @@ void *ResExtract(Id id, void *buffer)
 		return(NULL);
 	
 	HLock(prd->hdl);
-	BlockMove(*prd->hdl, buffer, GetHandleSize(prd->hdl));
+	BlockMove(*prd->hdl, (char *) buffer, GetHandleSize(prd->hdl));
 	HUnlock(prd->hdl);
 	return(buffer);
 	

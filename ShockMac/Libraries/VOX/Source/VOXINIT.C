@@ -34,6 +34,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
  */
 
+#ifdef __amigaos4__
+#include <stdlib.h>
+#include <stdio.h>
+#endif
+
 #include "lg.h"
 #include "vox.h"
 

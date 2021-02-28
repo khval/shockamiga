@@ -116,12 +116,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
 */
 
+#ifdef __amigaos4__
+#include <stdlib.h>
+#include <stdio.h>
+#endif
+
 #include "lg.h"
 #include "rnd.h"
 
 //	For gruesome interrupt routines, let 'em have their way:
 
-//еее#pragma off(check_stack);
+//#pragma off(check_stack);
 
 
 //	---------------------------------------------------------------

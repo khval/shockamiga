@@ -32,6 +32,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
 */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 //#include <fcntl.h>
 //#include <sys\stat.h>
 //#include <io.h>

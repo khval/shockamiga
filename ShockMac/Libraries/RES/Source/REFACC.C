@@ -35,6 +35,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
 */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 //#include <string.h>
 //#include <io.h>
 
@@ -189,13 +193,13 @@ RefTable *ResReadRefTable(Id id)
 		err = ResError();
 		if (err != 0)
 		{
-			DebugStr("\pResReadRefTable: Can't partial read the RefTable\n");
+			DebugStr("ResReadRefTable: Can't partial read the RefTable\n");
 			return (NULL);
 		}
 	}
 	else
 	{
-		DebugStr("\pResReadRefTable: Can't allocate pointer for RefTable\n");
+		DebugStr("ResReadRefTable: Can't allocate pointer for RefTable\n");
 	}
 	
 	return (prt);
@@ -355,7 +359,7 @@ void *RefExtract(RefTable *prt, Ref ref, void *buff)
 			prt->offset[index] - REFTABLESIZE(prt->numRefs),	// skip amt
 			RefSize(prt, index));												// data amt
 */
-		DebugStr("\pRefExtract: Not implemented for compressed compound resources.\n");
+		DebugStr("RefExtract: Not implemented for compressed compound resources.\n");
 		return (NULL);
 	}
 	else
@@ -364,7 +368,7 @@ void *RefExtract(RefTable *prt, Ref ref, void *buff)
 		err = ResError();
 		if (err != 0)
 		{
-			DebugStr("\pRefExtract: Can't partial read the normal resource.\n");
+			DebugStr("RefExtract: Can't partial read the normal resource.\n");
 			return (NULL);
 		}
 	}

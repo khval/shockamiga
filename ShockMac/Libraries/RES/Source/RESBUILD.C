@@ -29,6 +29,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
 */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 //#include <io.h>
 //#include <stdlib.h>
 #include <string.h>
@@ -106,7 +110,7 @@ int ResWrite(Id id)
 			compHdl = NewHandle(size + EXTRA);			// Make a new handle to compress to.
 			if (compHdl == NULL)
 			{
-				DebugStr("\pResWrite: Can't allocate LZW buffer for resource.\n");
+				DebugStr("ResWrite: Can't allocate LZW buffer for resource.\n");
 			}
 			else
 			{
@@ -118,7 +122,7 @@ int ResWrite(Id id)
 				if (prd->flags & RDF_COMPOUND)			// If it's a compound handle, copy the refTable
 				{															// over uncompressed.
 					sizeTable = REFTABLESIZE(((RefTable *)srcPtr)->numRefs);
-					BlockMove(srcPtr, compPtr, sizeTable);
+					BlockMove( (char *) srcPtr, (char *) compPtr, sizeTable);
 					size -= sizeTable;
 					srcPtr += sizeTable;
 					compPtr += sizeTable;
@@ -138,7 +142,7 @@ int ResWrite(Id id)
 				}
 				else
 				{
-					DebugStr("\pResWrite: LZW compression did not work.\n");
+					DebugStr("ResWrite: LZW compression did not work.\n");
 				}
 			}
 		}

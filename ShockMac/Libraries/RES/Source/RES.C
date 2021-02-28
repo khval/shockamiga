@@ -34,6 +34,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
 */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif 
+
 //#include <io.h>
 //#include <stdlib.h>
 #include <string.h>
@@ -270,7 +274,7 @@ void ResShrinkResDescTable()
 		SetPtrSize(gResDesc, newAmt * sizeof(ResDesc));
 		if (MemError() != noErr)
 		{
-//¥¥¥			Warning(("ResGrowDescTable: RES DESCRIPTOR TABLE BAD!!!\n"));
+//ï¿½ï¿½ï¿½			Warning(("ResGrowDescTable: RES DESCRIPTOR TABLE BAD!!!\n"));
 			return;
 		}
 		resDescMax = newAmt - 1;
