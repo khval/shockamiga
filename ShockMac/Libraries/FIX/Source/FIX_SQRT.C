@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //--------------------
 #include "fix.h"
 
-#ifdef __GNUC__
+#ifdef __powerpc__
 #define __powerc
 #endif
 

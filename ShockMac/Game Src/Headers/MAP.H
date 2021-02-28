@@ -305,7 +305,7 @@ typedef struct {
 #define _me_templight_flr(me_ptr)        _me_normal_n(me_ptr,templight,MAP_TLGHT_FLOOR)
 
 
-#ifdef __GNUC__
+#ifdef __powerpc__
 
 // implicit me_ptr and v
 #define _me_merge_set(me_ptr,v,strname,maskname) \

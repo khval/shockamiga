@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // build a table of line starts for the bitmap parameter
 // PowerPC version
-#if (defined(powerc) || defined(__powerc))	
+#if (defined(powerc) || defined(__powerc) || defined(__powerpc__))
 long *gr_make_vtab (grs_bitmap *bm)
  {
  	void 	*mem;
