@@ -10,6 +10,7 @@ INC += -I ../../Libraries/2D/Source/
 INC += -I ../../Libraries/2D/Source/Gen/
 INC += -I ../../Libraries/2D/Source/GR/
 INC += -I ../../Libraries/2D/Source/Clip/
+INC += -I "../../Libraries/2D/Source/Flat 8/"
 INC += -I ../../Libraries/3D/Source/
 INC += -I ../../Libraries/LG/Source/
 INC += -I ../../amigaos4_src/

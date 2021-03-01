@@ -42,7 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "tmaptab.h"
 
 // PowerPC math routines used by permap stuff
-#if defined(powerc) || defined(__powerc)
+#if defined(powerc) || defined(__powerc) || defined(__powerpc__)
 fix fix_div_16_16_3 (fix a, fix b)
  {
   return(AsmWideDivide((a) >> 3, (a) << 29, b));
