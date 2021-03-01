@@ -482,9 +482,11 @@ struct AWide
 };
 typedef struct AWide AWide;
 
-#if defined(powerc) || defined(__powerc) 
+#if defined(powerc) || defined(__powerc) || defined(__powerpc__) 
+#ifndef __GNUC__
 extern "C"
 {
+#endif
 extern fix fix_mul_3_3_3_asm (fix a, fix b);
 extern fix fix_mul_3_32_16_asm (fix a, fix b);
 extern fix fix_mul_3_16_20_asm (fix a, fix b);
@@ -499,8 +501,10 @@ extern long AsmWideDivide(long hi, long lo, long den);
 // extern AWide *AsmWideBitShift(AWide *src, long shift);
 #define AsmWideNegate(target) (AWide *) WideNegate((wide *) target)
 #define AsmWideBitShift(target,count) (AWide *) WideBitShift((wide *) target,count)
-}
 
+#ifndef __GNUC__
+}
+#endif
 #elif defined(__amigaos4__)
 
 extern AWide *AsmWideAdd(AWide *target, AWide *source);
