@@ -28,9 +28,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //--------------------
 //  Includes
 //--------------------
+
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
+#ifndef __amigaos4__
 #include <Palettes.h>
 #include <GestaltEqu.h>
 #include <Movies.h>
+#endif
+
 #include "Shock.h"
 #include "InitMac.h"
 #include "ShockBitmap.h"
