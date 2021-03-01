@@ -630,7 +630,7 @@ void terrfunc_one_map_square(int fmask)
 
 #define FACELET_MASK_Z   0
 
-#ifdef __powerpc__
+#ifdef __GNUC__
 
 #define fcs(v1,v2)      (FACELET_MASK_##v1 | FACELET_MASK_##v2)
 
