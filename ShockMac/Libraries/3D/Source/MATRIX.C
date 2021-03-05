@@ -396,7 +396,7 @@ void scale_view_matrix(void)
 // including the C&D coder, and a clever one using the set<cond> instruction
 // that contained no jumps.  On my (Matt's) 486, this dull, straightforward
 // one was just as fast as any other, and short, too.
-#if (defined(powerc) || defined(__powerc))	
+#if (defined(powerc) || defined(__powerc) || defined(__powerpc__))	
 int code_point(g3s_point *pt)	
  {
  	int	code;

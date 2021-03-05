@@ -108,7 +108,7 @@ g3s_phandle g3_transform_point(g3s_vector *v)
 // takes edi = ptr to point. projects, fills in sx,sy, sets flag.
 // returns 0 if z<=0, 1 if z>0.
 // trashes eax,ecx,edx.
-#if (defined(powerc) || defined(__powerc))	
+#if (defined(powerc) || defined(__powerc) || defined(__powerpc__) )	
 int g3_project_point(g3s_phandle p)
  {
  	fix		x,y,z,res;
@@ -457,7 +457,7 @@ void xlate_rotate_point(g3s_vector *v, fix *x, fix *y, fix *z)
  
 //does the rotate with the view matrix.
 //takes <x,y,z> = <esi,edi,ebp>, returns <x,y,z> = <ecx,esi,eax>
-#if (defined(powerc) || defined(__powerc))	
+#if (defined(powerc) || defined(__powerc) || defined(__powerpc__) )	
 void do_rotate(fix x, fix y, fix z, fix *rx, fix *ry, fix *rz)
  {
  	AWide 	result,result2;
