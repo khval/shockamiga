@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define blo	bcs		// branch low (unsigned <)
 #define bhs	bcc		// branch high or same (unsigned >=)
 
-#if (defined(powerc) || defined(__powerc))	
+#if (defined(powerc) || defined(__powerc) || defined(__powerpc__) )	
 // PowerPC optimized versions of standard memory ops
 
 // memset specifically optimized for PPC

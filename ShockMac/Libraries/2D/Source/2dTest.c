@@ -95,9 +95,12 @@ uchar flat8_testbm[16][16] =
    
 char bigblock[100000];
 
+#if defined(__amigaos4__) || defined(__linux__)   
+int main(int args, char **arg)
+#else
 extern "C" {extern fix fix_mul_asm_safe(fix a, fix b);}
-     
 void main (void)
+#endif
  {
 	grs_screen 	*screen;
 	Str255			str;
@@ -212,7 +215,7 @@ grs_bitmap dst;
 //  gr_set_fill_type(FILL_SOLID);
 //  gr_set_fill_parm(33);
 
-	// ï¿½ï¿½Setup for forcing 1D wall mapper
+	// ¥¥Setup for forcing 1D wall mapper
 //  ti.tmap_type=GRC_LIT_WALL1D;
 //  ti.flags=TMF_WALL;
 
@@ -221,7 +224,7 @@ grs_bitmap dst;
 //	  gr_per_umap(&bm, 4, points);
 		gr_clut_per_umap(&bm, 4, points, (uchar *) bogus_clut);
 //		gr_lit_per_umap(&bm, 4, points);
-//  		v_umap(&bm,4,points,&ti);		//ï¿½ï¿½ for wall 1D
+//  		v_umap(&bm,4,points,&ti);		//¥¥ for wall 1D
  /*{
 extern void per_umap (grs_bitmap *bm, int n, grs_vertex **vpl, grs_tmap_info *ti);
       grs_tmap_info ti;
@@ -270,6 +273,10 @@ extern void v_umap(grs_bitmap *bm, int n, grs_vertex **vpl, grs_tmap_info *ti);
  
 	gr_close();
 	CleanupAndExit();
+
+#if defined(__amigaos4__) || defined(__linux__)
+	return 0;
+#endif
 }
 
 void Rotate90(grs_vertex **points)
@@ -336,4 +343,4 @@ void SetVertexPerVScan(grs_vertex **points)
   make_vertex((*(points[2])),180,		200,		128,		128,		FixDiv(FIX_UNIT,fix_make(20,0)), 16*FIX_UNIT-1);
   make_vertex((*(points[3])),105,		200,		0,		128,		FixDiv(FIX_UNIT,fix_make(12,0)), 0);
  }
- 
+

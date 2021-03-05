@@ -120,7 +120,7 @@ void process_view_matrix(void);
 void scale_view_matrix(void);
 void get_pyr_vector(g3s_vector *corners);
 
-#if (defined(powerc) || defined(__powerc))	
+#if (defined(powerc) || defined(__powerc) || defined(__powerpc__))	
 int code_point(g3s_point *pt);
 #else
 asm int code_point(g3s_point *pt);

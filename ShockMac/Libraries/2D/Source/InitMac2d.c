@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 //====================================================================================
 //
-//		System Shock - ï¿½1994-1995 Looking Glass Technologies, Inc.
+//		System Shock - ©1994-1995 Looking Glass Technologies, Inc.
 //
 //		InitMac.c	-	Initialize Mac toolbox managers and setup the application's globals.
 //
@@ -115,17 +115,19 @@ void CheckConfig(void)
 	int					depth;
 	GDHandle     		devhandle;
 	PixMapHandle 	pmhan;
-	
+
+#ifndef __amigaos4__	
 	// Check for System 7
 	err = Gestalt(gestaltSystemVersion, &resp);
 	if (err || (!err && resp < 0x0700))
 	 	ErrorDie(2);
-	
+
 	// Check for 32-bit mode
 	err = Gestalt(gestaltAddressingModeAttr, &resp);
 	if (err || (!err && (resp & (1 << gestalt32BitAddressing) == 0)))
 	 	ErrorDie(8);
-	
+#endif	
+
 	// Check for Color QD
 	err = Gestalt(gestaltQuickdrawFeatures, &resp);
 	if (!err && (resp & (1 << gestaltHasColor)))

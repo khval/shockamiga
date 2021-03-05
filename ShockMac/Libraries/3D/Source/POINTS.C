@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 void rotate_norm(g3s_vector *v, fix *x, fix *y, fix *z);
 void do_norm_rotate(fix x, fix y, fix z, fix *rx, fix *ry, fix *rz);
 
-#if (defined(powerc) || defined(__powerc))	
+#if (defined(powerc) || defined(__powerc) || defined(__powerpc__) )
 void do_rotate(fix x, fix y, fix z, fix *rx, fix *ry, fix *rz);
 #else
 asm void do_rotate(fix x, fix y, fix z, fix *rx, fix *ry, fix *rz);

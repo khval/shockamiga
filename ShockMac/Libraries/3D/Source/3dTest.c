@@ -38,10 +38,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 WindowPtr	gMainWindow;
-
 extern void test_3d(void);
- 
+
+
+ #if defined(__amigaos4) || defined(__linux__)
+int main()
+#else
 void main (void)
+#endif
  {
 	grs_screen 	*screen;
 	Str255			str;
@@ -72,5 +76,8 @@ void main (void)
 #endif
  
 	CleanupAndExit();
+#if defined(__amigaos4) || defined(__linux__)
+	return 0;
+#endif
 }
 

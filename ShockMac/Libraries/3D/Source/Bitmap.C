@@ -103,7 +103,7 @@ grs_tmap_info tmap_info;
 char 	_g3d_enable_blend = 0;
 
 // prototypes
-#if (defined(powerc) || defined(__powerc))	
+#if (defined(powerc) || defined(__powerc) || defined(__powerpc__))	
 char SubLongWithOverflow(long *result, long src, long dest);
 char AddLongWithOverflow(long *result, long src, long dest);
 #else
@@ -412,7 +412,7 @@ NoBlend:
  	return(_g3d_bitmap_poly);
  }
  
-#if (defined(powerc) || defined(__powerc))	
+#if (defined(powerc) || defined(__powerc) || defined(__powerpc__) )	
 // subtract two longs, put the result in result, and return true if overflow
 // result = src-dest;
 char SubLongWithOverflow(long *result, long src, long dest)
