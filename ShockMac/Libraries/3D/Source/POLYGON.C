@@ -84,9 +84,15 @@ g3s_codes g3_check_codes(int n_verts, g3s_phandle *p)
  	 	orcode |= (*p)->codes;
  	 	p++;
  	 }
- 	
+
+#if __GNUC__ 	
+ 	retcode._or = orcode;
+ 	retcode._and = andcode;
+#else
  	retcode.or = orcode;
  	retcode.and = andcode;
+#endif
+
  	return(retcode);
  }
 

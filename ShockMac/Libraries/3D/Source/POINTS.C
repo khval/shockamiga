@@ -309,16 +309,25 @@ g3s_codes g3_transform_list(short n, g3s_phandle *dest_list, g3s_vector *v)
  {
  	int					i;
  	g3s_phandle	temphand;
- 	
+
+#ifdef __GNUC__ 	
+ 	g_codes._or = 0;
+ 	g_codes._and = 0xff;
+#else
  	g_codes.or = 0;
  	g_codes.and = 0xff;
- 	
+#endif
  	for (i = n; i--; i>0)
  	 {
  	 	temphand = g3_transform_point(v++);
+
+#ifdef __GNUC__ 	
+ 	 	g_codes._or |= temphand->codes;
+ 	 	g_codes._and &= temphand->codes;
+#else
  	 	g_codes.or |= temphand->codes;
  	 	g_codes.and &= temphand->codes;
- 	 	
+#endif 	 	
  	 	*(dest_list++) = temphand;
  	 }
  	return(g_codes);
@@ -330,16 +339,27 @@ g3s_codes g3_rotate_list(short n,g3s_phandle *dest_list,g3s_vector *v)
  {
  	int					i;
  	g3s_phandle	temphand;
- 	
+ 
+#ifdef __GNUC__ 	
+ 	g_codes._or = 0;
+ 	g_codes._and = 0xff;
+#else
  	g_codes.or = 0;
  	g_codes.and = 0xff;
+#endif
 
  	for (i = n; i--; i>0)
  	 {
  	 	temphand = g3_rotate_point(v++);
+
+#ifdef __GNUC__ 	
+ 	 	g_codes._or |= temphand->codes;
+ 	 	g_codes._and &= temphand->codes;
+#else
  	 	g_codes.or |= temphand->codes;
  	 	g_codes.and &= temphand->codes;
- 	 	
+#endif 	 	
+
  	 	*(dest_list++) = temphand;
  	 }
  	return(g_codes);
@@ -352,15 +372,25 @@ g3s_codes g3_project_list(short n,g3s_phandle *point_list)
  	int					i;
  	g3s_phandle	temphand;
  	
+#ifdef __GNUC__ 	
+ 	g_codes._or = 0;
+ 	g_codes._and = 0xff;
+#else
  	g_codes.or = 0;
  	g_codes.and = 0xff;
+#endif
 
  	for (i = n; i--; i>0)
  	 {
 		temphand = *(point_list++);
+
+#ifdef __GNUC__ 	
+		g_codes._or |= temphand->codes;
+		g_codes._and &= temphand->codes;
+#else
 		g_codes.or |= temphand->codes;
 		g_codes.and &= temphand->codes;
-	
+#endif
 		g3_project_point(temphand);
 	 }
 	
