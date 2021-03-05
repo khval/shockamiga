@@ -201,8 +201,10 @@ uchar	_vcolor_tab[N_VCOLOR_ENTRIES] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 g3s_point *_vpoint_tab[N_VPOINT_ENTRIES] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 grs_bitmap *_vtext_tab[N_VTEXT_ENTRIES] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
+#ifndef __GNUC__
 // ptr to stack parms
 char *parm_ptr;
+#endif
 
 // space for parms to objects
 char	parm_data[PARM_DATA_SIZE];
@@ -242,6 +244,10 @@ call_next	macro
 // this is bullshit, man, takes ptr to object on the freakin' stack!
 void g3_interpret_object(ubyte *object_ptr,...)
  {
+	#ifdef __GNUC__
+	va_list v1;
+	#endif
+
  	int		i,scale;
  	short	size;
  	
@@ -342,7 +348,11 @@ void g3_interpret_object(ubyte *object_ptr,...)
 g3_interpret_object_raw:
 #endif
 
-	va_start(parm_ptr, object_ptr);	// get addr of stack parms
+#ifdef __GNUC__
+	va_start(  v1, object_ptr);	// get addr of stack parms
+#else
+	va_start(  parm_ptr, object_ptr);	// get addr of stack parms
+#endif
 
 // MLA- not used ever?
 /*
@@ -469,7 +479,7 @@ uchar *do_multires(uchar *opcode)
 uchar *do_scaleres(uchar *opcode)
  {
  	// MLA - this routine appears to be buggy and can't possibly work, so I'm not doing it yet.
- 	DebugStr("\pCall Mark!");
+ 	DebugStr("Call Mark!");
  	
 /* 	int					count,scale;
 	long				temp_pnt[3];
