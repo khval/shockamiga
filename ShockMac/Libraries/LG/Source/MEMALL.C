@@ -53,6 +53,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * $log$
 */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <string.h>
 //#include <dos.h>
 #include "memall.h"
@@ -69,10 +73,14 @@ typedef struct {
 
 //	Allocator set stack
 
+
 #define MAX_ALLOCATORS 4
 static MemAllocSet memAllocStack[MAX_ALLOCATORS] = {
-	malloc, free, realloc,
+	malloc, 
+	realloc,
+	free
 };
+
 static int memIndexAllocStack = 0;
 
 //	Current allocator ptrs
@@ -262,6 +270,8 @@ void MemCheckOff()
 //
 //	Returns: far ptr to block in low memory, or NULL
 
+#ifndef __powerpc__
+
 void far *MallocConvMemBlock(ushort size, ConvMemBlock *pcmb)
 {
 	union REGS regs;
@@ -386,5 +396,6 @@ void *ReallocChecked(void *p, size_t size)
 
 	return(pnew);
 }
-
-
+
+#endif
+
