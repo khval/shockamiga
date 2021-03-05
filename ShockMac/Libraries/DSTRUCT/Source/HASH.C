@@ -125,9 +125,9 @@ errtype hash_init(Hashtable* h, int elemsize, int vecsize, Hashfunc hfunc, Equfu
 errtype hash_copy(Hashtable* t, Hashtable* s)
 {
    *t = *s;
-   t->statvec = NewPtr(t->size);
+   t->statvec = (char *) NewPtr(t->size);
    if (t->statvec == NULL) return ERR_NOMEM;
-   t->vec = NewPtr(t->elemsize*t->size);
+   t->vec = (char *) NewPtr(t->elemsize*t->size);
    if (t->vec == NULL) return ERR_NOMEM;
    LG_memcpy(t->vec,s->vec,t->size*t->elemsize);
    LG_memcpy(t->statvec,s->statvec,t->size);
@@ -178,9 +178,9 @@ static errtype grow(Hashtable* h, int newsize)
    int i;
 //   Spew(DSRC_DSTRUCT_Hash,("grow(%x,%d)\n",h,newsize));
    for (;!is_fermat_prime(newsize,2);newsize++);
-   newvec = NewPtr(newsize*h->elemsize);
+   newvec = (char *) NewPtr(newsize*h->elemsize);
    if (newvec == NULL) return ERR_NOMEM;
-   newstat = NewPtr(newsize);
+   newstat = (char *) NewPtr(newsize);
    if (newstat == NULL)
    {
       DisposePtr (newvec);

@@ -140,16 +140,16 @@ void double_re_heapify(PQueue *q, int head)
 errtype pqueue_init(PQueue* q, int size, int elemsize, QueueCompare comp, bool grow)
 {
    if (size < 1) return ERR_RANGE;
-   q->vec = NewPtr(elemsize*size);
+   q->vec = (char *) NewPtr(elemsize*size);
    if (q->vec == NULL) return ERR_NOMEM;
    if (elemsize > swap_bufsize)
    {
       if (swap_buffer == NULL)
-      	swap_buffer = NewPtr(elemsize);
+      	swap_buffer = (char *) NewPtr(elemsize);
       else
       {
       	DisposePtr(swap_buffer);
-      	swap_buffer = NewPtr(elemsize);
+      	swap_buffer = (char *) NewPtr(elemsize);
       }
       swap_bufsize = elemsize;
       if (MemError()) return ERR_NOMEM;
@@ -174,7 +174,7 @@ errtype pqueue_insert(PQueue* q, void* elem)
       	return ERR_NOMEM;
       BlockMoveData(q->vec, newp, q->size * q->elemsize);
       DisposePtr(q->vec);
-      q->vec = newp;
+      q->vec = (char *) newp;
       q->size*=2;
    }
    n = q->fullness++;

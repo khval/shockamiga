@@ -153,13 +153,31 @@ extern char gour_flag;	       // gour flag for actual polygon drawer
 #define OP_JNORM 1
 
 #define n_ops 40
-void *opcode_table[n_ops] = {do_eof,do_jnorm,do_lnres,do_multires,do_polyres,do_setcolor,
-														do_sortnorm,do_debug,do_setshade,do_goursurf,do_x_rel,do_y_rel,
-														do_z_rel,do_xy_rel,do_xz_rel,do_yz_rel,do_icall_p,do_icall_b,
-														do_icall_h,0,do_sfcal,do_defres,do_defres_i,do_getparms,do_getparms_i,
-														do_gour_p,do_gour_vc,do_getvcolor,do_getvscolor,do_rgbshades,
-		        								do_draw_mode,do_getpcolor,do_getpscolor,do_scaleres,do_vpnt_p,
-		        								do_vpnt_v,do_setuv,do_uvlist,do_tmap,do_dbg};
+void *opcode_table[n_ops] = {
+	(void*) do_eof,(void*) do_jnorm,(void*) do_lnres,(void*) do_multires,(void*) do_polyres,(void*) do_setcolor,
+	(void*) do_sortnorm,(void*) do_debug,(void*) do_setshade,(void*) do_goursurf,(void*) do_x_rel,(void*) do_y_rel,
+	(void*) do_z_rel,(void*) do_xy_rel,(void*) do_xz_rel,(void*) do_yz_rel,(void*) do_icall_p,(void*) do_icall_b,
+	(void*) do_icall_h,0,
+	(void*) do_sfcal,
+	(void*) do_defres,
+	(void*) do_defres_i,
+	(void*) do_getparms,
+	(void*) do_getparms_i,
+	(void*) do_gour_p,
+	(void*) do_gour_vc,
+	(void*) do_getvcolor,
+	(void*) do_getvscolor,
+	(void*) do_rgbshades,
+	(void*) do_draw_mode,
+	(void*) do_getpcolor,
+	(void*) do_getpscolor,
+	(void*) do_scaleres,
+	(void*) do_vpnt_p,
+	(void*) do_vpnt_v,
+	(void*) do_setuv,
+	(void*) do_uvlist,
+	(void*) do_tmap,
+	(void*) do_dbg};
         								
 
 #define N_RES_POINTS  1000
@@ -239,9 +257,9 @@ void g3_interpret_object(ubyte *object_ptr,...)
 	 {
 	 	gr_set_fill_type(FILL_CLUT);
 	 	if (_g3d_light_type == LT_DIFF)
-	 	 	opcode_table[OP_JNORM] = &do_ldjnorm;
+	 	 	opcode_table[OP_JNORM] = (void *) &do_ldjnorm;
 	 	else
-	 	 	opcode_table[OP_JNORM] = &do_ljnorm;
+	 	 	opcode_table[OP_JNORM] = (void *) &do_ljnorm;
 	 }
 	 
 #ifdef stereo_on
@@ -375,7 +393,7 @@ g3_interpret_object_raw:
 	if ((_g3d_light_type & (LT_SPEC | LT_DIFF))!=0)
 	 {
 	 	gr_set_fill_type(FILL_NORM);
-		opcode_table[OP_JNORM] = &do_jnorm;
+		opcode_table[OP_JNORM] = (void *) &do_jnorm;
    }
    
 Exit:
