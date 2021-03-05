@@ -18,7 +18,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 // main test code for 3d library (remove if not building test app)
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
+#ifndef __amigaos4__
 #include <fixmath.h>
+#endif
+
 #include <string.h>
 #include <StdLib.h>
 #include "lg.h"

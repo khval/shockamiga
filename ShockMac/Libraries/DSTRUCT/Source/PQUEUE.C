@@ -31,6 +31,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  //---------------------------------------------------
  //  For Mac version:  Uses NewPtr and DisposePtr.
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 //#include <io.h>
 #include <string.h>
 #include "pqueue.h"

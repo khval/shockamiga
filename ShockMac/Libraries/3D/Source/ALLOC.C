@@ -25,6 +25,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Point allocation, system init and shutdown
 // 
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include "lg.h"
 #include "3d.h"
 #include "GlobalV.h"

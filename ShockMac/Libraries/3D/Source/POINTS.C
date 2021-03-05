@@ -25,7 +25,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Point definition routines
 //
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
+#ifndef __amigaos4__
 #include <FixMath.h>
+#endif
+
 #include "lg.h"
 #include "3d.h"
 #include "GlobalV.h"

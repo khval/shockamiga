@@ -18,10 +18,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 // main test code for 2d library (remove if not building test app)
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <2d.h>
 #include <2dRes.h>
 #include <fix.h>
+#ifndef __amigaos4__
 #include <FixMath.h>
+#endif
 #include <InitMac.h>
 #include <StdLib.h>
 #include "lg.h"
