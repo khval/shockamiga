@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 //====================================================================================
 //
-//		System Shock - ©1994-1995 Looking Glass Technologies, Inc.
+//		System Shock - ï¿½1994-1995 Looking Glass Technologies, Inc.
 //
 //		InitMac.c	-	Initialize Mac toolbox managers and setup the application's globals.
 //
@@ -208,6 +208,7 @@ void CheckConfig(void)
 		gIsPowerPC = true;
 }
 
+
 //------------------------------------------------------------------------------------
 //		Make a color window the size of the main screen, and black it out.
 //------------------------------------------------------------------------------------
@@ -261,7 +262,7 @@ void GetFolders(void)
  	
  	// Now get info on the "Data" directory.
  	
-	hpb.fileParam.ioNamePtr = "\pData";
+	hpb.fileParam.ioNamePtr = "Data";
 	err = PBGetCatInfo((CInfoPBPtr)&hpb, false);
 	
 	// If we found it, then set our globals, otherwise die.
@@ -276,7 +277,7 @@ void GetFolders(void)
 	
 	// Now go into the data folder and get the "Alogs" and "Barks" folders.
 	
-	hpb.fileParam.ioNamePtr = "\pAlogs";
+	hpb.fileParam.ioNamePtr = "Alogs";
 	err = PBGetCatInfo((CInfoPBPtr)&hpb, false);
 	if (err == noErr)
 	{
@@ -288,7 +289,7 @@ void GetFolders(void)
 
 	hpb.fileParam.ioVRefNum = gDataVref;
 	hpb.fileParam.ioDirID = gDataDirID;
-	hpb.fileParam.ioNamePtr = "\pBarks";
+	hpb.fileParam.ioNamePtr = "Barks";
 	err = PBGetCatInfo((CInfoPBPtr)&hpb, false);
 	if (err == noErr)
 	{
@@ -362,7 +363,7 @@ void StringAlert(short stringnum)
 	InitCursor();
 	GetIndString(message, 1000, stringnum);
 	GetIndString(explain, 1001, stringnum);
-	ParamText(message, explain, "\p", "\p");
+	ParamText(message, explain, "", "");
 	
 	if (*explain)
 		StopAlert(1001, nil);

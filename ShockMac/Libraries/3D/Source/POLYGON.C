@@ -469,7 +469,7 @@ int draw_line_common(g3s_phandle p0,g3s_phandle p1)
 	  }
 	 else	// sline
 	  {
-	  	DebugStr("\pimplement me?");	
+	  	DebugStr("implement me?");	
 // we have to do this annoyingly because i is an sfix,
 // and 2d takes a fix, so we dump things in eax and munge
 /*

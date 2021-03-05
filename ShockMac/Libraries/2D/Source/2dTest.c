@@ -148,7 +148,7 @@ void main (void)
   
   SetRect(&r,0,0,420,16);
   EraseRect(&r);
-  MoveTo(10,12);  DrawString("\pCreating Inverse palette(normally preloaded in the real game)");
+  MoveTo(10,12);  DrawString("Creating Inverse palette(normally preloaded in the real game)");
   
  	gr_alloc_ipal();
 	gr_init_blend(1);
@@ -206,7 +206,7 @@ grs_bitmap dst;
 //  gr_set_fill_type(FILL_SOLID);
 //  gr_set_fill_parm(33);
 
-	// ¥¥Setup for forcing 1D wall mapper
+	// ï¿½ï¿½Setup for forcing 1D wall mapper
 //  ti.tmap_type=GRC_LIT_WALL1D;
 //  ti.flags=TMF_WALL;
 
@@ -215,7 +215,7 @@ grs_bitmap dst;
 //	  gr_per_umap(&bm, 4, points);
 		gr_clut_per_umap(&bm, 4, points, (uchar *) bogus_clut);
 //		gr_lit_per_umap(&bm, 4, points);
-//  		v_umap(&bm,4,points,&ti);		//¥¥ for wall 1D
+//  		v_umap(&bm,4,points,&ti);		//ï¿½ï¿½ for wall 1D
  /*{
 extern void per_umap (grs_bitmap *bm, int n, grs_vertex **vpl, grs_tmap_info *ti);
       grs_tmap_info ti;
