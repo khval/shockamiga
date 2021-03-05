@@ -1,7 +1,12 @@
 
 C=GCC
 
-INC = -I Source -I ./
+libName=lib2d.a
+base=../../
+abase = //
+libDir=$(base)LIB/
+
+INC = -I Source -I ./ -I ../
 INC += -I ../../Libraries/H
 INC += -I ../../Libraries/FIX/Source/
 INC += -I ../../Libraries/LG/Source/
@@ -14,6 +19,8 @@ INC += -I "../../Libraries/2D/Source/Flat 8/"
 INC += -I ../../Libraries/3D/Source/
 INC += -I ../../Libraries/LG/Source/
 INC += -I ../../amigaos4_src/
+
+INCTEST += -I ../../Libraries/DSTRUCT/Source/
 
 files += Source/VTAB.C
 files += Source/WIRPOLY.C
@@ -59,14 +66,25 @@ files += Source/PERMAP.C
 files += Source/PERSETUP.C
 files += Source/PERTOL.C
 files += Source/InitMac2d.c
-iles += Source/2dTest.c
+
+tests += Source/2dTest.c
+tests += "Test Source/SimpleMain.c 
+tests += "Test Source/SimpMain.c"
+tests += "Test Source/xSimpMain.c"
+
+libs += -lfix -l2d 
 
 files_o1 = ${files:.C=.o}
 files_o = ${files_o1:.c=.o}
 
+test_elfs = ${tests:.c=.elf}
+
 DEFS = -D__USE_INLINE__ -DNewPtr=malloc -DPtr=void* -DDisposePtr=free
 
-all:	 ${files_o}
+all:	 ${files_o}	$(libName)	$(test_elfs)
+
+$(libName): ${files_o} 
+	ar rcs $(libDir)$@ ${files_o}
 
 %.o: %.C
 	$(C) $(CPPFLAGS) $(INC) $(DEFS) $(CXXFLAGS) -c $< -o $@
@@ -74,5 +92,9 @@ all:	 ${files_o}
 %.o: %.c
 	$(C) $(CPPFLAGS) $(INC) $(DEFS) $(CXXFLAGS) -c $< -o $@
 
+%.elf: %.c
+	$(C) -L ../../LIB $(CPPFLAGS) $(INC) $(INCTEST) $(DEFS) $(CXXFLAGS) $< $(libs) -o $@
+
 clean:
-	delete ${files_o}
+	delete ${files_o} $(libName)
+

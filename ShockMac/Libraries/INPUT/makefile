@@ -3,6 +3,7 @@ C=GCC
 
 INC = -I Source
 INC += -I ../../Libraries/H
+INC += -I ../../Libraries/LG/Source/
 INC += -I ../../Libraries/FIX/Source/
 
 files += KBCOOK.C

@@ -1,8 +1,7 @@
 
-libName=libvox.a
-
 C=GCC
 
+libName=libvox.a
 base=../../
 abase = //
 

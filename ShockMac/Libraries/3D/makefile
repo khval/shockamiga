@@ -1,36 +1,56 @@
 
 C=GCC
 
-INC = -I Source
-INC += -I ../../Libraries/H
-INC += -I ../../Libraries/FIX/Source/
+libName=lib2d.a
+base=../../
+abase = //
+libDir=$(base)LIB/
 
-files += 3dTest.c
-files += ALLOC.C
-files += Bitmap.C
-files += CLIP.C
-files += DETAIL.C
-files += FOV.C
-files += GlobalV.C
-files += INSTANCE.C
-files += INTERP.C
-files += LIGHT.C
-files += MATRIX.C
-files += POINTS.C
-files += POLYGON.C
-files += SLEW.C
-files += TMAP.C
-files += VECTOR.C
+INC = -I Source -I ./ -I ../
+INC += -I $(base)Libraries/H
+INC += -I $(base)Libraries/FIX/Source/
+INC += -I $(base)Libraries/LG/Source/
+INC += -I $(base)Libraries/2D/Source/
+INC += -I "$(base)amigaos4_src"
+
+files += Source/ALLOC.C
+files += Source/CLIP.C
+files += Source/DETAIL.C
+files += Source/FOV.C
+files += Source/GlobalV.C
+files += Source/LIGHT.C
+files += Source/MATRIX.C
+files += Source/SLEW.C
+files += Source/TMAP.C
+files += Source/VECTOR.C
+files += Source/INSTANCE.C
+files += Source/Bitmap.C
+files += Source/POINTS.C
+files += Source/POLYGON.C
+files += Source/INTERP.C
+
+tests_files += Source/3dTest.c
 
 files_o1 = ${files:.C=.o}
 files_o = ${files_o1:.c=.o}
 
-DEFS = -D__USE_INLINE__
+DEFS = -D__USE_INLINE__ -DNewPtr=malloc -DDisposPtr=free 
 
-all:	 ${files_o}
+all:	 ${files_o}	$(libName)	$(test_elfs)
 
-%.o: Source/%.C
+$(libName): ${files_o} 
+	ar rcs $(libDir)$@ ${files_o}
+
+%.o: %.C
 	$(C) $(CPPFLAGS) $(INC) $(DEFS) $(CXXFLAGS) -c $< -o $@
 
-%.o: Source/%.c
+%.o: %.c
 	$(C) $(CPPFLAGS) $(INC) $(DEFS) $(CXXFLAGS) -c $< -o $@
+
+%.elf: %.c
+	$(C) -L ../../LIB $(CPPFLAGS) $(INC) $(INCTEST) $(DEFS) $(CXXFLAGS) $< $(libs) -o $@
+
+clean:
+	delete ${files_o} $(libName)
+
+

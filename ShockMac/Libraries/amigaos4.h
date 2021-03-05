@@ -6,6 +6,9 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdint.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdarg.h>
 
 typedef char *GrafPtr;
 
@@ -129,3 +132,16 @@ enum
 };
 
 typedef int ResType;
+typedef void * Ptr;
+typedef int wide;
+
+extern void DebugStr(const char *txt);
+extern uint32_t MemError();
+
+#define BlockMove(src,dest,size) memcpy(dest,src,size)
+#define BlockMoveData(src,dest,size) memcpy(dest,src,size)
+
+//	"void far *" to "void *"
+#define far
+
+
