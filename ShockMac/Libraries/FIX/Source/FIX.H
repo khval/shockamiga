@@ -497,29 +497,27 @@ extern AWide *AsmWideMultiply(long multiplicand, long multiplier, AWide *target)
 extern long AsmWideDivide(long hi, long lo, long den);
 
 // since these aren't implemented yet in our PPC code yet, we just call the fixMath versions
-// extern AWide *AsmWideNegate(AWide *target);
-// extern AWide *AsmWideBitShift(AWide *src, long shift);
+
+extern AWide *AsmWideNegate(AWide *target);
+extern AWide *AsmWideBitShift(AWide *src, long shift);
+
+#ifndef __amigaos4__
 #define AsmWideNegate(target) (AWide *) WideNegate((wide *) target)
 #define AsmWideBitShift(target,count) (AWide *) WideBitShift((wide *) target,count)
+#endif
 
 #ifndef __GNUC__
 }
 #endif
-#elif defined(__amigaos4__)
-
-extern AWide *AsmWideAdd(AWide *target, AWide *source);
-extern AWide *AsmWideMultiply(long multiplicand, long multiplier, AWide *target);
-extern long AsmWideDivide(long hi, long lo, long divisor);
-extern AWide *AsmWideNegate(AWide *target);
-extern AWide *AsmWideBitShift(AWide *src, long shift);
 
 #else
+
 extern asm AWide *AsmWideAdd(AWide *target, AWide *source);
 extern asm AWide *AsmWideMultiply(long multiplicand, long multiplier, AWide *target);
 extern asm long AsmWideDivide(long hi, long lo, long divisor);
 extern asm AWide *AsmWideNegate(AWide *target);
 extern asm AWide *AsmWideBitShift(AWide *src, long shift);
-#endif
 
+#endif
 
 #endif /* !__fix24_H */
