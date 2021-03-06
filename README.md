@@ -41,6 +41,8 @@ https://vintageapple.org/macprogramming/pdf/Macintosh_C_Programming_By_Example_1
 
 However, this can be come as support library, to make it easy port other Macintosh programs from that era (1992-1999).
 
+Despite MacOS7 being from the same ara as AmigaOS, I come to my understanding that in many way MacOS does not have good timing, and pretty bad events and multitasking, it miracle that survived the 90’s, its clear some places it make more sense to rewrite the crap, or provide better alternatives.
+
 Compiling on MacOS 9:
 ---------------------
 
