@@ -33,6 +33,14 @@ It looks like this project might need libdgl
 the project is heavy based on soft floats, instead of using FPU, this makes me sad, but its not the rights time to fix that. 
 Should be done when everything is compiling and working, so we see what breaks if it’s changed.
 
+We do not have Carbon API nor do we have Boron API on AmigaOS, so we need come up with a replacement
+or replace large part of the code, luckily, we only need small part of the API.
+We can write stubs, but it requires to learn the Macintosh API
+
+https://vintageapple.org/macprogramming/pdf/Macintosh_C_Programming_By_Example_1991.pdf
+
+However, this can be come as support library, to make it easy port other Macintosh programs from that era (1992-1999).
+
 Compiling on MacOS 9:
 ---------------------
 
