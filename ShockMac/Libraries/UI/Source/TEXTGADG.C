@@ -21,6 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // THINGS STILL NEEDED:
 // Cursors!!
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 // Gadgety stuff
 #include <string.h>
 

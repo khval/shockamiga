@@ -26,6 +26,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Source code to implement all these goofy gadgets
 // using the region system.
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
+
 #include <string.h>
 #include <stdio.h>
 

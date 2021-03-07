@@ -16,7 +16,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
  
 */
+
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#include "error.h"
+#include "TNG.h"
+typedef unsigned char uchar;
+#endif
+
 #include <HEADER.h>
+#include <RECT.H>
 
 // Initializes the TNG 
 errtype tng_GADGET_NAME_init(void *ui_data, TNG *ptng, TNGStyle *sty, int alignment, int min, int max, int value, int increm, LGPoint size)

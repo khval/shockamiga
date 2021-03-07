@@ -23,6 +23,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // things to do
 //  prefix everything with bounds checking, note if _fnt_count=-1
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <string.h>  // for fake load
 #include <stdlib.h>
 //#include <fcntl.h>

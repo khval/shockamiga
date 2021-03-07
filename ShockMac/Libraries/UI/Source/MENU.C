@@ -19,6 +19,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Source code for Menu Gadget
 
 // Gadgety stuff
+
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <string.h>
 
 #include "gadgets.h"

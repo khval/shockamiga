@@ -39,11 +39,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // For the Mac version I use a TimeManager task to poll the mouse for mouse
 // movement callback routines.  Mouse click events will be handled throught the normal
 // Macintosh event queue.  Most of the stuff in this file will go away.
-// ¥¥¥Note:  The mouse position will always be returned in *local* coordinates,
+// ï¿½ï¿½ï¿½Note:  The mouse position will always be returned in *local* coordinates,
 // that is, local to the main game window.
 
-#include <stdlib.h>
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#else
 #include <Timer.h>
+#endif
+
+#include <stdlib.h>
 
 #include "lg.h"
 #include "error.h"
@@ -795,7 +800,7 @@ errtype mouse_unset_callback(int id)
 // --------------------------------------------------------
 // 
 // mouse_constrain_xy() defines min/max coords
-//  ¥¥¥ don't do anything for now.  Will need to implement some day.
+//  ï¿½ï¿½ï¿½ don't do anything for now.  Will need to implement some day.
 errtype mouse_constrain_xy(short xl, short yl, short xh, short yh)
 {
 /*

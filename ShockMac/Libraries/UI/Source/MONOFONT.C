@@ -18,6 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 //#define Malloc malloc
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <string.h>
 //#include <malloc.h>
 //#include <mprintf.h>

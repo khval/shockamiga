@@ -25,6 +25,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // initializers for the new digital system
 //===================================================================
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include "digi.h"
 
 //--------------------------

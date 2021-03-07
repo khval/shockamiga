@@ -101,6 +101,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Initial revision
  */
 
+#ifdef __amigaos4__
+#include "amigaos4.h"
+#endif
+
 #include <stdlib.h>
 #include <string.h>
 
@@ -190,7 +194,7 @@ static errtype grow_save_under(short x, short y)
 	int sz = MAPSIZE(x,y);
 	if (SaveUnder.mapsize >= sz) return ERR_NOEFFECT;
 
-	DebugStr("\pSaveUnder needs to be increased!");	//¥¥¥
+	DebugStr("\pSaveUnder needs to be increased!");	//ï¿½ï¿½ï¿½
 	return OK;
 }
 
