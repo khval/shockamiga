@@ -278,7 +278,7 @@ typedef ushort fixang;
 
 // For Mac version: The PowerPC version uses two assembly language routines
 // to do the multiply and divide.
-#if defined(powerc) || defined(__powerc)
+#if defined(powerc) || defined(__powerc)  || defined(__powerpc__)
 
 #ifndef __GNUC__
 extern "C"
@@ -329,7 +329,7 @@ fix fix_safe_pyth_dist (fix a, fix b);
 // Returns 0 if x < 0
 fix fix_sqrt (fix x);
 
-#if defined(powerc) || defined(__powerc) || (__amigaos4__)
+#if defined(powerc) || defined(__powerc) || (__powerpc__)
 long quad_sqrt(long hi, long lo);
 #else
 asm long quad_sqrt(long hi, long lo);
@@ -337,7 +337,7 @@ asm long quad_sqrt(long hi, long lo);
 
 
 // Returns 0 if x < 0
-/* ï¿½ï¿½ï¿½ Fix this
+/* ¥¥¥ Fix this
 fix fix_sloppy_sqrt (fix x);
 #pragma aux fix_sloppy_sqrt parm [eax] value [eax] modify [eax ebx ecx edx esi edi]
 */
@@ -422,7 +422,7 @@ typedef long fix24;
 
 // For Mac version: The PowerPC version uses an assembly language routine
 // to do the multiply.
-#if defined(powerc) || defined(__powerc) 
+#if defined(powerc) || defined(__powerc) || defined(__powerpc__)
 #ifndef __GNUC__
 extern "C"
 {
@@ -447,7 +447,7 @@ fix24 asm fix24_div (fix24 a, fix24 b);
 
 #endif
 
-/* ï¿½ï¿½ï¿½ Fix this
+/* ¥¥¥ Fix this
 fix24 fix24_mul_div (fix24 m0, fix24 m1, fix24 d);
 #pragma aux fix24_mul_div =\
    "imul    edx"     \
@@ -459,7 +459,7 @@ fix24 fix24_mul_div (fix24 m0, fix24 m1, fix24 d);
 extern fix24 fix24_pyth_dist (fix24 a, fix24 b);
 extern fix24 fix24_fast_pyth_dist (fix24 a, fix24 b);
 extern fix24 fix24_safe_pyth_dist (fix24 a, fix24 b);
-/* ï¿½ï¿½ï¿½ Fix this
+/* ¥¥¥ Fix this
 fix24 fix24_sqrt (fix24 x);
 #pragma aux fix24_sqrt parm [eax] value [eax] modify [eax ebx ecx edx esi edi]
 */

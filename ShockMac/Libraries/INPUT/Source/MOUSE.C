@@ -39,7 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // For the Mac version I use a TimeManager task to poll the mouse for mouse
 // movement callback routines.  Mouse click events will be handled throught the normal
 // Macintosh event queue.  Most of the stuff in this file will go away.
-// ï¿½ï¿½ï¿½Note:  The mouse position will always be returned in *local* coordinates,
+// ¥¥¥Note:  The mouse position will always be returned in *local* coordinates,
 // that is, local to the main game window.
 
 #ifdef __amigaos4__
@@ -152,13 +152,13 @@ static void ReadMouseState(mouse_state *pMouseState);
 //---------------------------------------------------------------
 #pragma require_prototypes off
 
-#ifndef __powerc
+#if ! (defined(__powerc) || defined(__powerpc__))
 MouseTaskPtr GetMouseTask(void) = 0x2049;							// MOVE.L A1,A0
 #endif
 
 // KLC - try calling this from the main timer task.
 //---------------------------------------------------------------
-//#ifdef __powerc
+//#if  defined(__powerc) || defined(__powerpc__)
 //pascal void MousePollProc(TMTaskPtr tmTaskPtr)
 //#else
 
@@ -804,7 +804,7 @@ errtype mouse_unset_callback(int id)
 // --------------------------------------------------------
 // 
 // mouse_constrain_xy() defines min/max coords
-//  ï¿½ï¿½ï¿½ don't do anything for now.  Will need to implement some day.
+//  ¥¥¥ don't do anything for now.  Will need to implement some day.
 errtype mouse_constrain_xy(short xl, short yl, short xh, short yh)
 {
 /*
