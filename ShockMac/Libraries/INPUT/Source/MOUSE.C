@@ -161,7 +161,11 @@ MouseTaskPtr GetMouseTask(void) = 0x2049;							// MOVE.L A1,A0
 //#ifdef __powerc
 //pascal void MousePollProc(TMTaskPtr tmTaskPtr)
 //#else
-pascal void MousePollProc(void)
+
+#ifndef __amigaos4__
+pascal
+#endif
+ void MousePollProc(void)
 //#endif
 {
 //#ifndef __powerc
