@@ -96,7 +96,7 @@ static char *tableNames[] = {
 		StandardFileReply	reply;
 		OSErr				err;
 	
-		StandardPutFile("\pPalette output file:", "\pMovie Palettes", &reply);
+		StandardPutFile("Palette output file:", "Movie Palettes", &reply);
 		if (!reply.sfGood)
 			return;
 	
@@ -169,7 +169,7 @@ static char *tableNames[] = {
 		BlockMove(mh.palette, *palHdl, 768);
 		HUnlock(palHdl);
 
-		AddResource(palHdl, 'mpal', resID++, "\pn");
+		AddResource(palHdl, 'mpal', resID++, "n");
 		WriteResource(palHdl);
 		ReleaseResource(palHdl);
 	}
