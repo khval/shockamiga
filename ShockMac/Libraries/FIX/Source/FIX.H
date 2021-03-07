@@ -170,7 +170,7 @@ extern int	gOVResult;
 //
 // First some math functions that don't use fixes.
 //
-/*  ¥¥¥ Change this
+/*  Change this
 // Returns 0 if x < 0
 ushort long_sqrt (long x);
 #pragma aux long_sqrt parm [eax] value [ax] modify [eax ebx ecx edx esi edi]
@@ -280,13 +280,17 @@ typedef ushort fixang;
 // to do the multiply and divide.
 #if defined(powerc) || defined(__powerc)
 
+#ifndef __GNUC__
 extern "C"
 {
+#endif
 fix fix_mul_asm(fix a, fix b);
 fix fast_fix_mul_int_asm(fix a, fix b);
 fix fix_div_asm(fix a, fix b);
 fix fix_mul_div_asm (fix m0, fix m1, fix d);
+#ifndef __GNUC__
 }
+#endif
 #define fix_mul fix_mul_asm
 #define fast_fix_mul fix_mul_asm
 #define fast_fix_mul_int fast_fix_mul_int_asm
@@ -333,7 +337,7 @@ asm long quad_sqrt(long hi, long lo);
 
 
 // Returns 0 if x < 0
-/* ¥¥¥ Fix this
+/* ï¿½ï¿½ï¿½ Fix this
 fix fix_sloppy_sqrt (fix x);
 #pragma aux fix_sloppy_sqrt parm [eax] value [eax] modify [eax ebx ecx edx esi edi]
 */
@@ -419,12 +423,15 @@ typedef long fix24;
 // For Mac version: The PowerPC version uses an assembly language routine
 // to do the multiply.
 #if defined(powerc) || defined(__powerc) 
-
+#ifndef __GNUC__
 extern "C"
 {
+#endif
 fix24 fix24_mul_asm(fix24 a, fix24 b);
 fix24 fix24_div_asm(fix24 a, fix24 b);
+#ifndef __GNUC__
 }
+#endif
 #define fix24_mul fix24_mul_asm
 #define fix24_div fix24_div_asm
 
@@ -440,7 +447,7 @@ fix24 asm fix24_div (fix24 a, fix24 b);
 
 #endif
 
-/* ¥¥¥ Fix this
+/* ï¿½ï¿½ï¿½ Fix this
 fix24 fix24_mul_div (fix24 m0, fix24 m1, fix24 d);
 #pragma aux fix24_mul_div =\
    "imul    edx"     \
@@ -452,7 +459,7 @@ fix24 fix24_mul_div (fix24 m0, fix24 m1, fix24 d);
 extern fix24 fix24_pyth_dist (fix24 a, fix24 b);
 extern fix24 fix24_fast_pyth_dist (fix24 a, fix24 b);
 extern fix24 fix24_safe_pyth_dist (fix24 a, fix24 b);
-/* ¥¥¥ Fix this
+/* ï¿½ï¿½ï¿½ Fix this
 fix24 fix24_sqrt (fix24 x);
 #pragma aux fix24_sqrt parm [eax] value [eax] modify [eax ebx ecx edx esi edi]
 */

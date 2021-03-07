@@ -47,7 +47,7 @@ uchar		pKbdGetKeys[16];
 //---------------------------------------------------------------
 //  Startup and keyboard handlers and initialize globals.   Shutdown follows.
 //---------------------------------------------------------------
-int kb_startup(void *)
+int kb_startup(void *param)
 {
 	pKbdStatusFlags = 0;
 	

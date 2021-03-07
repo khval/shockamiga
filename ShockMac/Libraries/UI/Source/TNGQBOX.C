@@ -98,9 +98,9 @@ errtype tng_increm_slot(TNG *ptng, int quan)
       val_s = (short *)(pqs->var);
       *val_s = *val_s + (short)quan;
       if ((pqs->options & QB_BOUNDED) && (*val_s > (int)pqs->p2))
-         *val_s = (short)pqs->p2;
+         *val_s = (short) (uint32_t) pqs->p2;
       if ((pqs->options & QB_CYCLE) && (*val_s > (int)pqs->p2))
-         *val_s = (short)pqs->p1;
+         *val_s = (short) (uint32_t) pqs->p1;
       if ((pqs->options & QB_STRINGSET) && (*val_s > (int)pqs->p2))
          *val_s = (short)0;
    }
@@ -109,9 +109,9 @@ errtype tng_increm_slot(TNG *ptng, int quan)
       val_by = (ubyte *)(pqs->var);
       *val_by = *val_by + (ubyte)quan;
       if ((pqs->options & QB_BOUNDED) && (*val_by > (int)pqs->p2))
-         *val_by = (ubyte)pqs->p2;
+         *val_by = (ubyte) (uint32_t) pqs->p2;
       if ((pqs->options & QB_CYCLE) && (*val_by > (int)pqs->p2))
-         *val_by = (ubyte)pqs->p1;
+         *val_by = (ubyte) (uint32_t) pqs->p1;
       if ((pqs->options & QB_STRINGSET) && (*val_by > (int)pqs->p2))
          *val_by = (ubyte)0;
    }
@@ -166,21 +166,21 @@ errtype tng_decrem_slot(TNG *ptng, int quan)
       val_s = (short *)(pqs->var);
       *val_s = (*val_s) - (short)quan;
       if ((pqs->options & QB_BOUNDED) && (*val_s < (int)pqs->p1))
-         *val_s = (short)pqs->p1;
+         *val_s = (short) (uint32_t) pqs->p1;
       if ((pqs->options & QB_CYCLE) && (*val_s < (int)pqs->p1))
-         *val_s = (short)pqs->p2;
+         *val_s = (short) (uint32_t) pqs->p2;
       if ((pqs->options & QB_STRINGSET) && (*val_s < 0))
-         *val_s = (short)pqs->p2;
+         *val_s = (short) (uint32_t) pqs->p2;
    }
    if (pqs->vartype == QB_BYTE_SLOT)
    {
       val_by = (ubyte *)(pqs->var);
       if ((pqs->options & QB_BOUNDED) && (*val_by < (int)pqs->p1 + (ubyte)quan))
-         *val_by = (ubyte)pqs->p1;
+         *val_by = (ubyte) (uint32_t) pqs->p1;
       else if ((pqs->options & QB_CYCLE) && (*val_by < (int)pqs->p1 + (ubyte)quan))
-         *val_by = (ubyte)pqs->p2;
+         *val_by = (ubyte) (uint32_t) pqs->p2;
       else if ((pqs->options & QB_STRINGSET) && (*val_by < (ubyte)quan))
-         *val_by = (ubyte)pqs->p2;
+         *val_by = (ubyte) (uint32_t) pqs->p2;
       else
          *val_by = *val_by - (ubyte)quan;
    }
@@ -470,11 +470,11 @@ errtype tng_draw_qb_int_slot(TNG *ptng, QuickboxSlot *curp, LGRect r)
    if (curp->options & QB_ARROWS)
    {
       // Goofy arrows
-      if (TNG_QB(ptng)->left_id != NULL)
+      if (TNG_QB(ptng)->left_id != 0)
          argrect.ul.x += resource_bm_width(TNG_QB(ptng)->left_id);
       else
          argrect.ul.x += ptng->style->frobsize.x;
-      if (TNG_QB(ptng)->right_id != NULL)
+      if (TNG_QB(ptng)->right_id != 0)
          argrect.lr.x -= resource_bm_width(TNG_QB(ptng)->right_id);
       else
          argrect.lr.x -= ptng->style->frobsize.x;
@@ -550,7 +550,7 @@ errtype tng_draw_qb_int_slot(TNG *ptng, QuickboxSlot *curp, LGRect r)
    // Draw in goofy arrows, if they are necessary
    if (curp->options & QB_ARROWS)
    {
-      if (TNG_QB(ptng)->left_id != NULL)
+      if (TNG_QB(ptng)->left_id != 0)
       {
          if (TNG_QB(ptng)->options & QB_ALIGNMENT)
             draw_resource_bm(TNG_QB(ptng)->left_id, r.ul.x + TNG_QB(ptng)->internal_margin + TNG_QB(ptng)->spacing.x, r.ul.y);
@@ -584,7 +584,7 @@ errtype tng_draw_qb_int_slot(TNG *ptng, QuickboxSlot *curp, LGRect r)
          gr_int_line(p2.x, p2.y, p4.x, p4.y);
          gr_int_line(p3.x, p3.y, p4.x, p4.y);
       }
-      if (TNG_QB(ptng)->right_id != NULL)
+      if (TNG_QB(ptng)->right_id != 0)
          draw_resource_bm(TNG_QB(ptng)->right_id, r.lr.x - resource_bm_width(TNG_QB(ptng)->right_id), r.ul.y);
       else
       {
@@ -669,11 +669,11 @@ errtype tng_draw_qb_bool_slot(TNG *ptng, QuickboxSlot *curp, LGRect r)
    if (curp->options & QB_ARROWS)
    {
       // Goofy arrows
-      if (TNG_QB(ptng)->left_id != NULL)
+      if (TNG_QB(ptng)->left_id != 0)
          argrect.ul.x += resource_bm_width(TNG_QB(ptng)->left_id);
       else
          argrect.ul.x += ptng->style->frobsize.x;
-      if (TNG_QB(ptng)->right_id != NULL)
+      if (TNG_QB(ptng)->right_id != 0)
          argrect.lr.x -= resource_bm_width(TNG_QB(ptng)->right_id);
       else
          argrect.lr.x -= ptng->style->frobsize.x;
@@ -693,7 +693,7 @@ errtype tng_draw_qb_bool_slot(TNG *ptng, QuickboxSlot *curp, LGRect r)
    // Draw in goofy arrows, if they are necessary
    if (curp->options & QB_ARROWS)
    {
-      if (TNG_QB(ptng)->left_id != NULL)
+      if (TNG_QB(ptng)->left_id != 0)
       {
          if (TNG_QB(ptng)->options & QB_ALIGNMENT)
             draw_resource_bm(TNG_QB(ptng)->left_id, r.ul.x + TNG_QB(ptng)->internal_margin + TNG_QB(ptng)->spacing.x, r.ul.y);
@@ -727,7 +727,7 @@ errtype tng_draw_qb_bool_slot(TNG *ptng, QuickboxSlot *curp, LGRect r)
          gr_int_line(p2.x, p2.y, p4.x, p4.y);
          gr_int_line(p3.x, p3.y, p4.x, p4.y);
       }
-      if (TNG_QB(ptng)->right_id != NULL)
+      if (TNG_QB(ptng)->right_id != 0)
          draw_resource_bm(TNG_QB(ptng)->right_id, r.lr.x - resource_bm_width(TNG_QB(ptng)->right_id), r.ul.y);
       else
       {
@@ -924,7 +924,7 @@ bool tng_quickbox_mousebutt(TNG *ptng, uchar type, LGPoint loc)
                   tw = TNG_QB(ptng)->internal_margin;
                else
                   tw = _text_width(ptng, curp->label);
-               if ((pqbtng->left_id != NULL) &&
+               if ((pqbtng->left_id != 0) &&
                   (loc.x < resource_bm_width(pqbtng->left_id) + tw + pqbtng->border.x + (2 * pqbtng->spacing.x)))
                {
                   if (type == TNG_MOUSE_LDOWN)
@@ -939,7 +939,7 @@ bool tng_quickbox_mousebutt(TNG *ptng, uchar type, LGPoint loc)
                   else
                      tng_decrem_slot(ptng, 10);
                }
-               if ((pqbtng->right_id != NULL) &&   
+               if ((pqbtng->right_id != 0) &&   
                   (loc.x > pqbtng->size.x - pqbtng->border.x - resource_bm_width(pqbtng->right_id) - 2 ))
                {
                   if (type == TNG_MOUSE_LDOWN)
@@ -1321,11 +1321,11 @@ int _total_extent(TNG *ptng)
             }
             if (qbs->options & QB_ARROWS)
             {
-               if (TNG_QB(ptng)->left_id == NULL)
+               if (TNG_QB(ptng)->left_id == 0)
                   v += ptng->style->frobsize.x;
                else
                   v += resource_bm_width(TNG_QB(ptng)->left_id);
-               if (TNG_QB(ptng)->right_id == NULL)
+               if (TNG_QB(ptng)->right_id == 0)
                   v += ptng->style->frobsize.x;
                else
                   v += resource_bm_width(TNG_QB(ptng)->right_id);
@@ -1348,11 +1348,11 @@ int _total_extent(TNG *ptng)
             }
             if (qbs->options & QB_ARROWS)
             {
-               if (TNG_QB(ptng)->left_id == NULL)
+               if (TNG_QB(ptng)->left_id == 0)
                   v += ptng->style->frobsize.x;
                else
                   v += resource_bm_width(TNG_QB(ptng)->left_id);
-               if (TNG_QB(ptng)->right_id == NULL)
+               if (TNG_QB(ptng)->right_id == 0)
                   v += ptng->style->frobsize.x;
                else
                   v += resource_bm_width(TNG_QB(ptng)->right_id);

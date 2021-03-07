@@ -168,7 +168,7 @@ errtype gad_qbox_end_full(Gadget **ptr)
 {
    LGPoint sz;
    if ((TNG_QB(current_box->tng_data)->options & QB_ADDCLOSE) &&  (ptr != NULL))
-         gad_qbox_add_parm("Close", QB_PUSHBUTTON_SLOT, gad_qbox_close_func, QB_NO_OPTION, (void *)(ptr), NULL);
+         gad_qbox_add_parm("Close", QB_PUSHBUTTON_SLOT, (void *) gad_qbox_close_func, QB_NO_OPTION, (void *)(ptr), NULL);
 
    tng_quickbox_size(current_box->tng_data, &sz);
    box_dim.lr.x = box_dim.ul.x + sz.x;
