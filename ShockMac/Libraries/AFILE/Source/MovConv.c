@@ -369,6 +369,7 @@ void main(void)
  		Handle		compHdl;
  		long			compSize;
  		short		notSyncFlag;
+		int pix;
 		
 		frameBuff = NewPtr(600 * 300);
 		CheckError(MemError(), "Can't allocate a frame buffer for input movie.");
@@ -383,7 +384,7 @@ void main(void)
 			// See if there's an 0xFF anywhere in this screen.
 			subColor = FALSE;
 			pp = (uchar *)frameBuff;
-			for (int pix = 0; pix < 600*300; pix++)
+			for ( pix = 0; pix < 600*300; pix++)
 			{
 				if (*pp == 0xFF)
 				{
