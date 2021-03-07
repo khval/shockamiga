@@ -72,14 +72,14 @@ tests += "Test Source/SimpleMain.c
 tests += "Test Source/SimpMain.c"
 tests += "Test Source/xSimpMain.c"
 
-libs += -lfix -l2d 
+libs += -lfix -l2d -lpalette
 
 files_o1 = ${files:.C=.o}
 files_o = ${files_o1:.c=.o}
 
 test_elfs = ${tests:.c=.elf}
 
-DEFS = -D__USE_INLINE__ -DNewPtr=malloc -DPtr=void* -DDisposePtr=free
+DEFS = -D__USE_INLINE__ -DNewPtr=malloc -DDisposePtr=free
 
 all:	 ${files_o}	$(libName)	$(test_elfs)
 

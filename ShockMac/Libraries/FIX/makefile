@@ -3,7 +3,7 @@ C=GCC
 
 libName =../../LIB/libfix.a
 
-INC = -I Source
+INC = -I Source -I ../
 INC += -I ../../Libraries/H
 INC += -I ../../Libraries/FIX/Source/
 

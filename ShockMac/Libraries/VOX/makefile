@@ -7,14 +7,18 @@ abase = //
 
 libDir=$(base)LIB/
 
-INC = -I Source
+INC = -I Source -I ../
 INC += -I $(base)Libraries/H
+INC += -I $(base)Libraries/DSTRUCT/Source/
+INC += -I $(base)Libraries/INPUT/Source/
 INC += -I $(base)Libraries/2D/Source/
 INC += -I $(base)Libraries/3D/Source/
 INC += -I $(base)Libraries/LG/Source/
 INC += -I $(base)Libraries/FIX/Source/
+INC += -I $(base)Libraries/RES/Source/
+INC += -I $(base)amigaos4_src/
 
-libs += -lfix
+libs += -lfix -linput
 
 files += Source/VOX2D.C
 files += Source/VOX3D.C
@@ -27,7 +31,7 @@ tests = Tests/VoxTest.c
 
 tests_elfs = ${tests:.c=.elf}
 
-DEFS = -D__USE_INLINE__ -DNewPtr=malloc -DPtr=void* -DDisposePtr=free
+DEFS = -D__USE_INLINE__ -DNewPtr=malloc -DDisposePtr=free
 
 all_files = ${files_o} 
 
