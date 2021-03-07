@@ -63,7 +63,11 @@ WindowPtr	gMainWindow;
 //		MAIN PROGRAM
 //	---------------------------------------------------------------
 
+#ifdef __amigaos4__
+int main(void)
+#else
 void main(void)
+#endif
 {
 	grs_screen 	*screen;
 	static grs_bitmap bm;

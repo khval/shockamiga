@@ -40,7 +40,11 @@ MovieHeader mh;
 //		MAIN PROGRAM
 //	--------------------------------------------------------------
 
+#ifdef __amigaos4__
+int main(void)
+#else
 void main(void)
+#endif
 {
 static char *chunkNames[] = {
    "END  ","VIDEO","AUDIO","TEXT ","PAL  ","TABLE","?????","?????"};
@@ -230,6 +234,10 @@ static char *tableNames[] = {
 
 	fclose(fpi);
 	CloseResFile(outResNum);
+
+#ifdef __amigaos4__
+return 0;
+#endif
 }
 
 

@@ -29,7 +29,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef SLIST_H
 #define SLIST_H
 
+#ifndef __amigaos4__
 #include "types.h"
+#endif
 
 //	--------------------------------------------------------------
 

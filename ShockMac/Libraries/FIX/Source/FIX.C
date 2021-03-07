@@ -92,8 +92,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdlib.h>
 
 #ifdef __amigaos4__
-#include <proto/exec.h>
-#define DebugStr(s) DebugPrintF("%s\n",s)
+#include "amigaos4.h"
 #else
 #include <FixMath.h>
 #endif
@@ -260,7 +259,7 @@ fix fix_pyth_dist (fix a, fix b)
 	gOVResult = 100;
 	blah	= 200;
 	
-	// ¥¥¥should check for overflow!
+	// should check for overflow!
  	return fix_sqrt(fix_mul(a, a) + fix_mul(b, b));
 }
 

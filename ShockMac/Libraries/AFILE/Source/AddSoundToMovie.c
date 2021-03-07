@@ -38,7 +38,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 //  Prototypes
+
+#ifdef __amigaos4__
+#else
 void main(void);
+#endif
+
+
 void	 CheckError(OSErr error, Str255 displayString);
 void SetInputSpecs(void);
 
@@ -55,7 +61,11 @@ void MyCreateTextTrack(Movie theMovie);
 //		MAIN PROGRAM
 //	---------------------------------------------------------------
 
+#if defined(__amigaos4__) || defined(__linux__)
+int main()
+#else
 void main(void)
+#endif
 {
 	Ptr				p;
 	long				stupid;
@@ -142,6 +152,10 @@ void main(void)
 		DisposeMovie(gMovie);	
 	CloseResFile(sndResNum);
  	ExitMovies();
+
+#if defined(__amigaos4__) || defined(__linux__)
+	return 0;
+#endif
 }
 
 //------------------------------------------------------------------------
