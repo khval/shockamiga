@@ -58,7 +58,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __RES_H
 #define __RES_H
 
-//ï¿½ï¿½ï¿½ For now
+//¥¥¥ For now
 //#define DBG_ON		1
 
 #include <Files.h>
